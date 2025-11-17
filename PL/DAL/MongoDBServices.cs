@@ -9,7 +9,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 
-namespace PoddProjektV4.BL
+namespace PoddProjektV4.DAL
 {
     public class MongoDBServices
     {
