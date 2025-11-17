@@ -1,4 +1,4 @@
-﻿namespace PoddProjektV3._2
+﻿namespace PL
 {
     partial class PodVisaren
     {
@@ -45,7 +45,7 @@
             label1.Size = new Size(786, 61);
             label1.TabIndex = 2;
             label1.Text = "SÖK EFTER DIN FAVORITPODD";
-            label1.Click += label1_Click;
+            //label1.Click += label1_Click;
             // 
             // RSSTEXT
             // 
