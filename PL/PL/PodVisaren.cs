@@ -1,3 +1,4 @@
+using PoddProjektV4.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -5,7 +6,8 @@ using System.ServiceModel.Syndication;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace PoddProjektV3._2
+
+namespace PL
 {
     public partial class PodVisaren : Form
     {
@@ -14,37 +16,63 @@ namespace PoddProjektV3._2
             InitializeComponent();
         }
 
-        /*public Podd HamtaPodd(string xmlPoddLank)
+        public Podcast HamtaPodd(string xmlPoddLank)
         {
             using (XmlReader XMLlasare = XmlReader.Create(xmlPoddLank)) //skapar en xml läsare 
             {
                 //klassen syndicationfeed läser av xml filen 
                 SyndicationFeed flode = SyndicationFeed.Load(XMLlasare);
 
-                Podd dinPodd = new Podd //vi skapar ett objket av podden och väljer ut dessa egenskaper
+                List<Avsnitt> avsnittLista = new List<Avsnitt>();
+                foreach (var item in flode.Items)
                 {
+                    avsnittLista.Add(new Avsnitt
+                    {
+                        Titel = item.Title.Text,
+                        Beskrivning = item.Summary?.Text,
+                        PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
+                    });
+                }
+
+                Podcast dinPodd = new Podcast //vi skapar ett objket av podden och väljer ut dessa egenskaper
+                {
+                    Id = Guid.NewGuid().ToString(),
                     Titel = flode.Title.Text,
-                    AntalAvsnitt = flode.Items.Count(),
-                    Beskrivning = flode.Description?.Text
+                    Beskrivning = flode.Description?.Text,
+                    Kategori = null,
+                    PoddAvsnitt = avsnittLista
                 };
                 return dinPodd;
             }
-        }*/
-
-        private void VisaPodd_Click(object sender, EventArgs e)
-        {
-            /*string url = textBox1.Text; //hämtar länken och skickar den i hamtaPodd parametern som är en string 
-            Podd dinPodd = HamtaPodd(url);
-            dataGridView1.DataSource = new List<Podd> { dinPodd };
-            //grid view kan endast visa saker från en lista så skapar en lista som endast innehåller objektet av podden*/
         }
 
-        private void label1_Click(object sender, EventArgs e)
+  
+
+        private void visaPODD_Click_1(object sender, EventArgs e)
+        {
+            string url = RSSTEXT.Text;
+            Podcast dinPodd = HamtaPodd(url);
+
+            var visningsLista = new List<object>
+            {
+                new
+                {
+                    Titel = dinPodd.Titel,
+                    AntalAvsnitt = dinPodd.PoddAvsnitt?.Count ?? 0,
+                    Beskrivning = dinPodd.Beskrivning
+                }
+            };
+            poddTabell.DataSource = visningsLista;
+
+            //grid view kan endast visa saker från en lista så skapar en lista som endast innehåller objektet av podden
+        }
+
+        private void RSSTEXT_TextChanged(object sender, EventArgs e)
         {
 
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void poddTabell_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
