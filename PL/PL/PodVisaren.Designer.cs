@@ -28,30 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button1 = new Button();
-            textBox1 = new TextBox();
             label1 = new Label();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            RSSTEXT = new TextBox();
+            visaPODD = new Button();
+            poddTabell = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)poddTabell).BeginInit();
             SuspendLayout();
-            // 
-            // button1
-            // 
-            button1.Location = new Point(595, 91);
-            button1.Name = "button1";
-            button1.Size = new Size(139, 34);
-            button1.TabIndex = 0;
-            button1.Text = "Visa din podd";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += VisaPodd_Click;
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(59, 94);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(347, 31);
-            textBox1.TabIndex = 1;
-            textBox1.Text = "Lägg in din poddlänk i rssformat";
             // 
             // label1
             // 
@@ -65,39 +47,54 @@
             label1.Text = "SÖK EFTER DIN FAVORITPODD";
             label1.Click += label1_Click;
             // 
-            // dataGridView1
+            // RSSTEXT
             // 
-            dataGridView1.AllowUserToOrderColumns = true;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 154);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(755, 252);
-            dataGridView1.TabIndex = 3;
-            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            RSSTEXT.Location = new Point(98, 103);
+            RSSTEXT.Name = "RSSTEXT";
+            RSSTEXT.Size = new Size(332, 31);
+            RSSTEXT.TabIndex = 3;
+            RSSTEXT.TextChanged += RSSTEXT_TextChanged;
+            // 
+            // visaPODD
+            // 
+            visaPODD.Location = new Point(622, 104);
+            visaPODD.Name = "visaPODD";
+            visaPODD.Size = new Size(112, 34);
+            visaPODD.TabIndex = 4;
+            visaPODD.Text = "button1";
+            visaPODD.UseVisualStyleBackColor = true;
+            visaPODD.Click += visaPODD_Click_1;
+            // 
+            // poddTabell
+            // 
+            poddTabell.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            poddTabell.Location = new Point(12, 183);
+            poddTabell.Name = "poddTabell";
+            poddTabell.RowHeadersWidth = 62;
+            poddTabell.Size = new Size(722, 225);
+            poddTabell.TabIndex = 5;
+            poddTabell.CellContentClick += poddTabell_CellContentClick;
             // 
             // PodVisaren
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(dataGridView1);
+            Controls.Add(poddTabell);
+            Controls.Add(visaPODD);
+            Controls.Add(RSSTEXT);
             Controls.Add(label1);
-            Controls.Add(textBox1);
-            Controls.Add(button1);
             Name = "PodVisaren";
             Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)poddTabell).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Button button1;
-        private TextBox textBox1;
         private Label label1;
-        private DataGridView dataGridView1;
+        private TextBox RSSTEXT;
+        private Button visaPODD;
+        private DataGridView poddTabell;
     }
 }
