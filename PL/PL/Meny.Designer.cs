@@ -1,14 +1,16 @@
-﻿namespace PoddProjektV3._2
+﻿using PoddProjektV3._2;
+
+namespace PL
 {
     partial class Meny
     {
         /// <summary>
-        /// Required designer variable.
+        ///  Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Clean up any resources being used.
+        ///  Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
@@ -23,58 +25,59 @@
         #region Windows Form Designer generated code
 
         /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
+        ///  Required method for Designer support - do not modify
+        ///  the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            Register = new Button();
-            Sök = new Button();
-            Kategori = new Button();
+            RegisterBtn = new Button();
+            SokBtn = new Button();
+            KategorierBtn = new Button();
             SuspendLayout();
             // 
-            // button1
+            // RegisterBtn
             // 
-            Register.Location = new Point(69, 49);
-            Register.Name = "button1";
-            Register.Size = new Size(229, 65);
-            Register.TabIndex = 0;
-            Register.Text = "Register";
-            Register.UseVisualStyleBackColor = true;
-            Register.Click += registerBtn_Click;
+            RegisterBtn.Location = new Point(47, 41);
+            RegisterBtn.Name = "RegisterBtn";
+            RegisterBtn.Size = new Size(310, 112);
+            RegisterBtn.TabIndex = 0;
+            RegisterBtn.Text = "Register";
+            RegisterBtn.UseVisualStyleBackColor = true;
+            RegisterBtn.Click += registerBtn_Click;
             // 
-            // button2
+            // SokBtn
             // 
-            Sök.Location = new Point(69, 143);
-            Sök.Name = "button2";
-            Sök.Size = new Size(229, 65);
-            Sök.TabIndex = 1;
-            Sök.Text = "Sök ny podd";
-            Sök.UseVisualStyleBackColor = true;
-            Sök.Click += sokBtn_Click;
+            SokBtn.Location = new Point(47, 176);
+            SokBtn.Name = "SokBtn";
+            SokBtn.Size = new Size(310, 112);
+            SokBtn.TabIndex = 1;
+            SokBtn.Text = "Sök";
+            SokBtn.UseVisualStyleBackColor = true;
+            SokBtn.Click += sokBtn_Click;
             // 
-            // button3
+            // KategorierBtn
             // 
-            Kategori.Location = new Point(69, 236);
-            Kategori.Name = "button3";
-            Kategori.Size = new Size(229, 65);
-            Kategori.TabIndex = 2;
-            Kategori.Text = "Se kategorier";
-            Kategori.UseVisualStyleBackColor = true;
-            Kategori.Click += kategoriBtn_Click;
+            KategorierBtn.Location = new Point(47, 312);
+            KategorierBtn.Name = "KategorierBtn";
+            KategorierBtn.Size = new Size(310, 112);
+            KategorierBtn.TabIndex = 2;
+            KategorierBtn.Text = "Kategorier";
+            KategorierBtn.UseVisualStyleBackColor = true;
+            KategorierBtn.Click += kategorierBtn_Click;
             // 
-            // Meny
+            // Meny2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(Kategori);
-            Controls.Add(Sök);
-            Controls.Add(Register);
-            Name = "Meny";
-            Text = "Meny";
+            Controls.Add(KategorierBtn);
+            Controls.Add(SokBtn);
+            Controls.Add(RegisterBtn);
+            Name = "Meny2";
+            Text = "Form1";
             ResumeLayout(false);
         }
+
 
         private void registerBtn_Click(object sender, EventArgs e)
         {
@@ -92,7 +95,7 @@
             this.Hide();
         }
 
-        private void kategoriBtn_Click(object sender, EventArgs e)
+        private void kategorierBtn_Click(object sender, EventArgs e)
         {
             // objekt kategoriForm = new object();
 
@@ -103,8 +106,8 @@
 
         #endregion
 
-        private Button Register;
-        private Button Sök;
-        private Button Kategori;
+        private Button RegisterBtn;
+        private Button SokBtn;
+        private Button KategorierBtn;
     }
 }

@@ -16,7 +16,7 @@ namespace PL
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new Meny());
             Debug.WriteLine("hallå");
 
             Avsnitt avsnitt1 = new Avsnitt("Duschen", "Duschen är kall idag", "2025-11-14");
