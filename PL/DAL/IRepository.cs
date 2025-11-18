@@ -8,10 +8,16 @@ namespace PoddProjektV4.DAL
 {
     public interface IRepository<T>
     {
-        public void LaggTill(T entitet);
-        public bool Uppdatera(T entitet);
-        public bool Radera(string id);
-        public T? HamtaMedId(string id);
-        public List<T> HamtaAllt();
+        void LaggTill(T entitet);
+        bool Uppdatera(T entitet);
+        bool Radera(string id);
+        T? HamtaMedId(string id);
+        List<T> HamtaAllt();
+
+        Task LaggTillAsync(T entitet);
+        Task<bool> UppdateraAsync(T entitet);
+        Task<bool> RaderaAsync(string id);
+        Task<T?> HamtaMedIdAsync(string id);
+        Task<List<T>> HamtaAlltAsync();
     }
 }
