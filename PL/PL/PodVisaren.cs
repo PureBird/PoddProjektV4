@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -29,7 +30,7 @@ namespace PL
                     avsnittLista.Add(new Avsnitt
                     {
                         Titel = item.Title.Text,
-                        Beskrivning = item.Summary?.Text,
+                        Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", ""),
                         PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
                     });
                 }
@@ -46,7 +47,7 @@ namespace PL
             }
         }
 
-  
+
 
         private void visaPODD_Click_1(object sender, EventArgs e)
         {
@@ -62,9 +63,16 @@ namespace PL
                     Beskrivning = dinPodd.Beskrivning
                 }
             };
+
             poddTabell.DataSource = visningsLista;
 
+            avsnittGrid.DataSource = dinPodd.PoddAvsnitt;
+
+
             //grid view kan endast visa saker från en lista så skapar en lista som endast innehåller objektet av podden
+
+
+
         }
 
         private void RSSTEXT_TextChanged(object sender, EventArgs e)
@@ -73,6 +81,11 @@ namespace PL
         }
 
         private void poddTabell_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void avsnittGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
