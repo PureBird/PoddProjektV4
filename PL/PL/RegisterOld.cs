@@ -8,28 +8,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PL
+namespace PoddProjektV3._2
 {
-    public partial class Register : Form
+    public partial class RegisterOld : Form
     {
-        public Register()
+        public RegisterOld()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //Meny menyForm = new Meny();
-            //menyForm.Show();
-            this.Close();
-        }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

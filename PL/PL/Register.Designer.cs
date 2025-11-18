@@ -1,4 +1,4 @@
-﻿namespace PoddProjektV3._2
+﻿namespace PL
 {
     partial class Register
     {
@@ -28,106 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
-            header = new Label();
-            comboBoxFilter = new ComboBox();
+            TillbakaBtn = new Button();
+            h1 = new Label();
+            FilterComboBox = new ComboBox();
             dataGridView1 = new DataGridView();
-            Column1 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column3 = new DataGridViewTextBoxColumn();
-            tillbakaBtn = new Button();
+            PoddNamn = new DataGridViewTextBoxColumn();
+            PBeskrivning = new DataGridViewTextBoxColumn();
+            AntalAvsnitt = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // header
+            // TillbakaBtn
             // 
-            header.AutoSize = true;
-            header.Font = new Font("Stencil", 26F, FontStyle.Bold | FontStyle.Italic);
-            header.Location = new Point(55, 70);
-            header.Name = "header";
-            header.Size = new Size(239, 52);
-            header.TabIndex = 0;
-            header.Text = "Register";
+            TillbakaBtn.Location = new Point(17, 14);
+            TillbakaBtn.Name = "TillbakaBtn";
+            TillbakaBtn.Size = new Size(94, 29);
+            TillbakaBtn.TabIndex = 0;
+            TillbakaBtn.Text = "<- Tillbaka";
+            TillbakaBtn.UseVisualStyleBackColor = true;
+            TillbakaBtn.Click += button1_Click;
             // 
-            // comboBoxFilter
+            // h1
             // 
-            comboBoxFilter.FormattingEnabled = true;
-            comboBoxFilter.Location = new Point(66, 136);
-            comboBoxFilter.Name = "comboBoxFilter";
-            comboBoxFilter.Size = new Size(300, 28);
-            comboBoxFilter.TabIndex = 1;
-            comboBoxFilter.Text = "Alla Poddar";
+            h1.AutoSize = true;
+            h1.Font = new Font("Stencil", 26F, FontStyle.Bold | FontStyle.Italic);
+            h1.Location = new Point(38, 58);
+            h1.Name = "h1";
+            h1.Size = new Size(239, 52);
+            h1.TabIndex = 1;
+            h1.Text = "REGISTER";
+            // 
+            // FilterComboBox
+            // 
+            FilterComboBox.FormattingEnabled = true;
+            FilterComboBox.Location = new Point(48, 122);
+            FilterComboBox.Name = "FilterComboBox";
+            FilterComboBox.Size = new Size(229, 28);
+            FilterComboBox.TabIndex = 2;
+            FilterComboBox.Text = "Alla Podcasts";
+            FilterComboBox.SelectedIndexChanged += FilterComboBox_SelectedIndexChanged;
             // 
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.Pink;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
-            dataGridView1.Location = new Point(66, 192);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { PoddNamn, PBeskrivning, AntalAvsnitt });
+            dataGridView1.Location = new Point(48, 169);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(610, 270);
-            dataGridView1.TabIndex = 2;
+            dataGridView1.Size = new Size(592, 188);
+            dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
-            // Column1
+            // PoddNamn
             // 
-            Column1.HeaderText = "Podcast";
-            Column1.MinimumWidth = 6;
-            Column1.Name = "Column1";
+            PoddNamn.HeaderText = "Podcast";
+            PoddNamn.MinimumWidth = 6;
+            PoddNamn.Name = "PoddNamn";
             // 
-            // Column2
+            // PBeskrivning
             // 
-            Column2.HeaderText = "Beskrivning";
-            Column2.MinimumWidth = 6;
-            Column2.Name = "Column2";
+            PBeskrivning.HeaderText = "Beskrivning";
+            PBeskrivning.MinimumWidth = 6;
+            PBeskrivning.Name = "PBeskrivning";
             // 
-            // Column3
+            // AntalAvsnitt
             // 
-            Column3.HeaderText = "Antal avsnitt";
-            Column3.MinimumWidth = 6;
-            Column3.Name = "Column3";
+            AntalAvsnitt.HeaderText = "Antal avsnitt";
+            AntalAvsnitt.MinimumWidth = 6;
+            AntalAvsnitt.Name = "AntalAvsnitt";
             // 
-            // tillbakaBtn
-            // 
-            tillbakaBtn.Location = new Point(33, 25);
-            tillbakaBtn.Name = "tillbakaBtn";
-            tillbakaBtn.Size = new Size(94, 29);
-            tillbakaBtn.TabIndex = 3;
-            tillbakaBtn.TabStop = false;
-            tillbakaBtn.Text = "<- Tillbaka";
-            tillbakaBtn.UseVisualStyleBackColor = true;
-            tillbakaBtn.Click += tillbakaBtn_Click;
-            // 
-            // Register
+            // RegisterNew
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 488);
-            Controls.Add(tillbakaBtn);
+            ClientSize = new Size(800, 450);
             Controls.Add(dataGridView1);
-            Controls.Add(comboBoxFilter);
-            Controls.Add(header);
-            Name = "Register";
-            Text = "Register";
+            Controls.Add(FilterComboBox);
+            Controls.Add(h1);
+            Controls.Add(TillbakaBtn);
+            Name = "RegisterNew";
+            Text = "RegisterNew";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
-        private void tillbakaBtn_Click(object sender, EventArgs e)
-        {
-            Application.OpenForms["Meny"].Show();
-            this.Close();
-        }
-
         #endregion
 
-        private Label header;
-        private ComboBox comboBoxFilter;
+        private Button TillbakaBtn;
+        private Label h1;
+        private ComboBox FilterComboBox;
         private DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn Column1;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column3;
-        private Button tillbakaBtn;
+        private DataGridViewTextBoxColumn PoddNamn;
+        private DataGridViewTextBoxColumn PBeskrivning;
+        private DataGridViewTextBoxColumn AntalAvsnitt;
     }
 }

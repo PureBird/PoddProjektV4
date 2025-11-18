@@ -84,7 +84,7 @@ namespace PL
             Register registerForm = new Register();
 
             registerForm.Show();
-            this.Hide();
+            //this.Hide();
         }
 
         private void sokBtn_Click(object sender, EventArgs e)
