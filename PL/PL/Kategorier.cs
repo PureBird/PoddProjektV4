@@ -132,8 +132,6 @@ namespace PL
         private void CreateRbn_CheckedChanged(object sender, EventArgs e)
         {
             RensaUI();
-            OptionLbl.Text = "Skapa en kategori";
-
             CatLbl.Text = "Namnet på den nya kategorin:";
             CatTbx.Visible = true;
             CatBtn.Visible = true;
@@ -144,8 +142,6 @@ namespace PL
         private void EditRbn_CheckedChanged(object sender, EventArgs e)
         {
             RensaUI();
-            OptionLbl.Text = "Byta namn på en kategori";
-
             //Första raden
             CatLbl.Text = "Kategorin att ändra namn på:";
             CatCbx.Visible = true;
@@ -159,8 +155,6 @@ namespace PL
         private void DeleteRbn_CheckedChanged(object sender, EventArgs e)
         {
             RensaUI();
-            OptionLbl.Text = "Radera en kategori";
-
             CatLbl.Text = "Kategorin som du vill radera:";
             CatCbx.Visible = true;
             CatBtn.Visible = true;

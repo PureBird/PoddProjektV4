@@ -30,8 +30,6 @@
         {
             BackBtn = new Button();
             CategoryLbl = new Label();
-            DisplayOptionLbl = new Label();
-            OptionLbl = new Label();
             CreateRbn = new RadioButton();
             DeleteRbn = new RadioButton();
             EditRbn = new RadioButton();
@@ -65,26 +63,6 @@
             CategoryLbl.Size = new Size(163, 28);
             CategoryLbl.TabIndex = 1;
             CategoryLbl.Text = "Kategorier";
-            // 
-            // DisplayOptionLbl
-            // 
-            DisplayOptionLbl.AutoSize = true;
-            DisplayOptionLbl.Font = new Font("Segoe UI", 12F);
-            DisplayOptionLbl.Location = new Point(6, 205);
-            DisplayOptionLbl.Name = "DisplayOptionLbl";
-            DisplayOptionLbl.Size = new Size(66, 21);
-            DisplayOptionLbl.TabIndex = 2;
-            DisplayOptionLbl.Text = "Jag vill...";
-            // 
-            // OptionLbl
-            // 
-            OptionLbl.AutoSize = true;
-            OptionLbl.Font = new Font("Segoe UI", 12F);
-            OptionLbl.Location = new Point(67, 205);
-            OptionLbl.Name = "OptionLbl";
-            OptionLbl.Size = new Size(91, 21);
-            OptionLbl.TabIndex = 3;
-            OptionLbl.Text = "placeholder";
             // 
             // CreateRbn
             // 
@@ -228,7 +206,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 243);
+            ClientSize = new Size(700, 188);
             Controls.Add(AlertLblEditCount);
             Controls.Add(AlertLbl);
             Controls.Add(CatCbx);
@@ -241,8 +219,6 @@
             Controls.Add(EditRbn);
             Controls.Add(DeleteRbn);
             Controls.Add(CreateRbn);
-            Controls.Add(OptionLbl);
-            Controls.Add(DisplayOptionLbl);
             Controls.Add(CategoryLbl);
             Controls.Add(BackBtn);
             Margin = new Padding(3, 2, 3, 2);
@@ -256,8 +232,6 @@
 
         private Button BackBtn;
         private Label CategoryLbl;
-        private Label DisplayOptionLbl;
-        private Label OptionLbl;
         private RadioButton CreateRbn;
         private RadioButton DeleteRbn;
         private RadioButton EditRbn;
