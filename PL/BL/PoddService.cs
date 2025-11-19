@@ -16,6 +16,14 @@ namespace PoddProjektV4.BL
         {
             this.repository = repository;
         }
+        public List<Podcast> HamtaAllaPoddar()
+        {
+            return repository.HamtaAllt();
+        }
+        public bool TaBortPodcast(string id)
+        {
+            return repository.Radera(id);
+        }
         public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
         {
             return await repository.TaBortEnKategoriFranPoddAsync(poddId, kategoriAttTaBort);
