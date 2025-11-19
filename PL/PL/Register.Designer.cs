@@ -60,12 +60,12 @@
             // 
             // FilterComboBox
             // 
+            FilterComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
             FilterComboBox.FormattingEnabled = true;
             FilterComboBox.Location = new Point(48, 122);
             FilterComboBox.Name = "FilterComboBox";
             FilterComboBox.Size = new Size(229, 28);
             FilterComboBox.TabIndex = 2;
-            FilterComboBox.Text = "Alla Podcasts";
             FilterComboBox.SelectedIndexChanged += FilterComboBox_SelectedIndexChanged;
             // 
             // dataGridView1
@@ -99,7 +99,7 @@
             AntalAvsnitt.MinimumWidth = 6;
             AntalAvsnitt.Name = "AntalAvsnitt";
             // 
-            // RegisterNew
+            // Register
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -108,7 +108,7 @@
             Controls.Add(FilterComboBox);
             Controls.Add(h1);
             Controls.Add(TillbakaBtn);
-            Name = "RegisterNew";
+            Name = "Register";
             Text = "RegisterNew";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
