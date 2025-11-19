@@ -24,14 +24,14 @@ namespace PoddProjektV4.BL
         {
             return repository.Radera(id);
         }
-        public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
-        {
-            return await repository.TaBortEnKategoriFranPoddAsync(poddId, kategoriAttTaBort);
-        }
-        public async Task<int> TaBortKategoriFranAllaAsync(string kategori)
-        {
-            return await repository.TaBortKategoriFranAllaAsync(kategori);
-        }
+        //public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
+        //{
+        //    return await repository.TaBortEnKategoriFranPoddAsync(poddId, kategoriAttTaBort);
+        //}
+        //public async Task<int> TaBortKategoriFranAllaAsync(string kategori)
+        //{
+        //    return await repository.TaBortKategoriFranAllaAsync(kategori);
+        //}
 
     }
 }
