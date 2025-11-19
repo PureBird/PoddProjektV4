@@ -18,9 +18,9 @@ namespace PoddProjektV4.BL
             _repository = repository;
         }
 
-        public List<String> HamtaUnikaKategorier()
+        public async Task<List<string>> HamtaUnikaKategorier()
         {
-            var allaPoddar = HamtaAllaPoddar();
+            var allaPoddar = await HamtaAllaPoddarAsync();
             List<string> kategoriLista = new List<string>();
 
             foreach (var podcast in allaPoddar)

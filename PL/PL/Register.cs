@@ -21,7 +21,7 @@ namespace PL
             InitializeComponent();
             
             var mongoDB = new MongoDBServices();
-            var repo = new PoddRepository(mongoDB);
+            var repo = new PoddRepository();
             service = new PoddService(repo);
 
             this.Load += FyllSida;
@@ -33,11 +33,11 @@ namespace PL
             FyllComboBox(sender, e);
         }
 
-        private void FyllComboBox(object sender, EventArgs e)
+        private async Task FyllComboBox(object sender, EventArgs e)
         {
             FilterComboBox.Items.Add("AllaPoddar");
             List<string> kategoriLista = new List<string>(); 
-            kategoriLista = service.HamtaUnikaKategorier();
+            kategoriLista = await service.HamtaUnikaKategorier();
 
             foreach (var kategori in kategoriLista) {
                 FilterComboBox.Items.Add(kategori);
@@ -45,9 +45,9 @@ namespace PL
 
         }
 
-        private void FyllRegister(object sender, EventArgs e)
+        private async Task FyllRegister(object sender, EventArgs e)
         {
-            var allaPoddar = service.HamtaAllaPoddar();
+            var allaPoddar = await service.HamtaAllaPoddarAsync();
             dataGridView1.Rows.Clear();
 
             foreach (var podcast in allaPoddar)
