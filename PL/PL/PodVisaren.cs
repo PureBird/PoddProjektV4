@@ -1,3 +1,4 @@
+using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System;
 using System.Collections.Generic;
@@ -6,12 +7,15 @@ using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using System.Xml;
+using System.Xml.Linq;
 
 
 namespace PL
 {
     public partial class PodVisaren : Form
     {
+        private readonly PoddRepository _poddRepo;
+        private Podcast dinPodd;
         public PodVisaren()
         {
             InitializeComponent();
@@ -24,13 +28,25 @@ namespace PL
                 //klassen syndicationfeed läser av xml filen 
                 SyndicationFeed flode = SyndicationFeed.Load(XMLlasare);
 
+    //            var kategoriText = flode.ElementExtensions
+    //.Where(ext => ext.OuterName == "category" &&
+    //              ext.OuterNamespace.Contains("itunes"))
+    //.Select(ext =>
+    //{
+    //    using var r = ext.GetReader();
+    //    r.MoveToContent();
+    //    return r.GetAttribute("text");
+    //})
+    //.FirstOrDefault();
+
+
                 List<Avsnitt> avsnittLista = new List<Avsnitt>();
                 foreach (var item in flode.Items)
                 {
                     avsnittLista.Add(new Avsnitt
                     {
                         Titel = item.Title.Text,
-                        Beskrivning = flode.Description?.Text, //Beskrivning = flode.Description?.Text, Så var det förut
+                        Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", ""), //Beskrivning = flode.Description?.Text, Så var det förut
                         PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
                     });
                 }
@@ -52,7 +68,7 @@ namespace PL
         private void visaPODD_Click_1(object sender, EventArgs e)
         {
             string url = RSSTEXT.Text;
-            Podcast dinPodd = HamtaPodd(url);
+            dinPodd = HamtaPodd(url);
 
             var visningsLista = new List<object>
             {
@@ -62,7 +78,7 @@ namespace PL
                     AntalAvsnitt = dinPodd.PoddAvsnitt?.Count ?? 0,
                     Beskrivning = dinPodd.Beskrivning,
                     id = dinPodd.Id,
-                    katergori = dinPodd.Kategori
+                    kategori = dinPodd.Kategori
                 }
             };
 
@@ -89,6 +105,12 @@ namespace PL
 
         private void avsnittGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
+        }
+
+        private void sparaBTN_Click(object sender, EventArgs e)
+        {
+           _poddRepo.LaggTillAsync(dinPodd);
 
         }
     }
