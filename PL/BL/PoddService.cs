@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PoddProjektV4.BL
 {
-    internal class PoddService
+    public class PoddService
     {
 
         private readonly PoddRepository repository;
@@ -24,6 +24,26 @@ namespace PoddProjektV4.BL
         {
             return repository.Radera(id);
         }
+
+        public List<String> HamtaUnikaKategorier()
+        {
+            var allaPoddar = HamtaAllaPoddar();
+            List<string> kategoriLista = new List<string>();
+
+            foreach (var podcast in allaPoddar)
+            {
+                string? kategori = podcast.Kategori;
+
+                if (!string.IsNullOrEmpty(kategori) && !kategoriLista.Contains(kategori))
+                {
+                    kategoriLista.Add(kategori);
+                }
+            }
+
+            return kategoriLista;
+
+        }
+
         //public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
         //{
         //    return await repository.TaBortEnKategoriFranPoddAsync(poddId, kategoriAttTaBort);
