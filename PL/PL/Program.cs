@@ -1,7 +1,8 @@
-using PoddProjektV4.Models;
 using PoddProjektV4.BL;
 using PoddProjektV4.DAL;
+using PoddProjektV4.Models;
 using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace PL
 {
@@ -35,6 +36,23 @@ namespace PL
             {
                 System.Diagnostics.Debug.WriteLine(p.Titel);
             }
+
+            int totalForms = Application.OpenForms.Count;
+            if (totalForms < 2)
+            {
+                bool visible = true;
+
+                if (totalForms == 1)
+                {
+                    visible = Application.OpenForms[0].Visible;
+                }
+                if (!visible)
+                {
+                    Application.Exit();
+                }
+         
+            }
+
         }
     }
 }
