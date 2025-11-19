@@ -20,7 +20,7 @@ namespace PoddProjektV4.Models
         public string Beskrivning { get; set; }
 
         [BsonElement("kategori")]
-        public string? Kategori { get; set; }
+        public string Kategori { get; set; } = "";
 
         [BsonElement("poddAvsnitt")]
         public List<Avsnitt> PoddAvsnitt { get; set; }
