@@ -30,7 +30,7 @@ namespace PL
                     avsnittLista.Add(new Avsnitt
                     {
                         Titel = item.Title.Text,
-                        Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", ""),
+                        Beskrivning = flode.Description?.Text, //Beskrivning = flode.Description?.Text, Så var det förut
                         PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
                     });
                 }
@@ -40,7 +40,7 @@ namespace PL
                     Id = Guid.NewGuid().ToString(),
                     Titel = flode.Title.Text,
                     Beskrivning = flode.Description?.Text,
-                    Kategori = null,
+                    Kategori = flode.Categories.ToString(),
                     PoddAvsnitt = avsnittLista
                 };
                 return dinPodd;
@@ -60,7 +60,9 @@ namespace PL
                 {
                     Titel = dinPodd.Titel,
                     AntalAvsnitt = dinPodd.PoddAvsnitt?.Count ?? 0,
-                    Beskrivning = dinPodd.Beskrivning
+                    Beskrivning = dinPodd.Beskrivning,
+                    id = dinPodd.Id,
+                    katergori = dinPodd.Kategori
                 }
             };
 
