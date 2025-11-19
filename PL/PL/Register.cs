@@ -25,6 +25,8 @@ namespace PL
             service = new PoddService(repo);
 
             this.Load += FyllSida;
+            FilterComboBox.SelectedIndexChanged += FilterComboBoxSelect;
+
         }
 
         private void FyllSida(object sender, EventArgs e)
@@ -35,7 +37,7 @@ namespace PL
 
         private async Task FyllComboBox(object sender, EventArgs e)
         {
-            FilterComboBox.Items.Add("AllaPoddar");
+            FilterComboBox.Items.Add("Alla Poddar");
             List<string> kategoriLista = new List<string>(); 
             kategoriLista = await service.HamtaUnikaKategorier();
 
@@ -57,7 +59,27 @@ namespace PL
             }
         }
 
-        
+        private async void FilterComboBoxSelect(object sender, EventArgs e)
+        {
+            if (FilterComboBox.SelectedItem == "Alla Poddar")
+            {
+                await FyllRegister(sender, e);
+            }
+
+            else
+            {
+                var allaPoddar = await service.HamtaAllaPoddarAsync();
+                dataGridView1.Rows.Clear();
+                foreach (var podcast in allaPoddar)
+                {
+                    if (podcast.Kategori == FilterComboBox.Text)
+                    {
+                        dataGridView1.Rows.Add(
+                            podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
+                    }
+                }
+            }
+        }
 
 
         private void button1_Click(object sender, EventArgs e)
