@@ -9,9 +9,10 @@ namespace PL
     public class Validering
     {
         //Returnerar true om strängen är tom.
-        public bool IsTomStrang(string testStrang)
+        public static bool IsTomStrang(string testStrang)
         {
             return string.IsNullOrEmpty(testStrang);
+            
         }
     }
 }

@@ -19,6 +19,8 @@ namespace PL
         public PodVisaren()
         {
             InitializeComponent();
+            _poddRepo = new PoddRepository();
+
         }
 
         public Podcast HamtaPodd(string xmlPoddLank)
@@ -56,7 +58,7 @@ namespace PL
                     Id = Guid.NewGuid().ToString(),
                     Titel = flode.Title.Text,
                     Beskrivning = flode.Description?.Text,
-                    Kategori = flode.Categories.ToString(),
+                    Kategori = null,
                     PoddAvsnitt = avsnittLista
                 };
                 return dinPodd;
@@ -67,6 +69,10 @@ namespace PL
 
         private void visaPODD_Click_1(object sender, EventArgs e)
         {
+            if (Validering.IsTomStrang(RSSTEXT.Text))
+                MessageBox.Show("Vänligen mata in en länk");
+                
+
             string url = RSSTEXT.Text;
             dinPodd = HamtaPodd(url);
 
@@ -74,9 +80,9 @@ namespace PL
             {
                 new
                 {
-                    Titel = dinPodd.Titel,
+                    titel = dinPodd.Titel,
                     AntalAvsnitt = dinPodd.PoddAvsnitt?.Count ?? 0,
-                    Beskrivning = dinPodd.Beskrivning,
+                    beskrivning = dinPodd.Beskrivning,
                     id = dinPodd.Id,
                     kategori = dinPodd.Kategori
                 }
@@ -108,9 +114,11 @@ namespace PL
 
         }
 
-        private void sparaBTN_Click(object sender, EventArgs e)
+        private async void sparaBTN_Click(object sender, EventArgs e)
         {
-           _poddRepo.LaggTillAsync(dinPodd);
+
+          await _poddRepo.LaggTillAsync(dinPodd);
+            MessageBox.Show("podden sparades");
 
         }
     }
