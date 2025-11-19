@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PoddProjektV4.DAL;
 using PoddProjektV4.BL;
+using PoddProjektV4.Models;
 
 
 namespace PL
@@ -16,6 +17,7 @@ namespace PL
     public partial class Register : Form
     {
         private PoddService service;
+        private List<Podcast> laddadePoddar;
         public Register()
         {
             InitializeComponent();
@@ -26,6 +28,7 @@ namespace PL
 
             this.Load += FyllSida;
             FilterComboBox.SelectedIndexChanged += FilterComboBoxSelect;
+            dataGridView1.CellClick += CellKlickad;
 
         }
 
@@ -49,10 +52,10 @@ namespace PL
 
         private async Task FyllRegister(object sender, EventArgs e)
         {
-            var allaPoddar = await service.HamtaAllaPoddarAsync();
+            laddadePoddar = await service.HamtaAllaPoddarAsync();
             dataGridView1.Rows.Clear();
 
-            foreach (var podcast in allaPoddar)
+            foreach (var podcast in laddadePoddar)
             {
                 dataGridView1.Rows.Add(
                     podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
@@ -63,14 +66,16 @@ namespace PL
         {
             if (FilterComboBox.SelectedItem == "Alla Poddar")
             {
+                laddadePoddar.Clear();
                 await FyllRegister(sender, e);
             }
 
             else
             {
-                var allaPoddar = await service.HamtaAllaPoddarAsync();
+                laddadePoddar.Clear();
+                laddadePoddar = await service.HamtaAllaPoddarAsync();
                 dataGridView1.Rows.Clear();
-                foreach (var podcast in allaPoddar)
+                foreach (var podcast in laddadePoddar)
                 {
                     if (podcast.Kategori == FilterComboBox.Text)
                     {
@@ -79,6 +84,16 @@ namespace PL
                     }
                 }
             }
+        }
+
+        private void CellKlickad(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
+
+            Podcast valdPodcast = laddadePoddar[e.RowIndex];
+
+            PoddInfo poddInfoForm = new PoddInfo(valdPodcast);
+            poddInfoForm.Show();
         }
 
 
