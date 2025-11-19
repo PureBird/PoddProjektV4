@@ -1,6 +1,4 @@
-﻿using PoddProjektV3._2;
-
-namespace PL
+﻿namespace PL
 {
     partial class Meny
     {

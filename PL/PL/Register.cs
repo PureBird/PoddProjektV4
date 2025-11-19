@@ -8,21 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PoddProjektV4.DAL;
-using BL;
+using PoddProjektV4.BL;
 
 
 namespace PL
 {
     public partial class Register : Form
     {
-        private TestServiceReg service;
+        private PoddService service;
         public Register()
         {
             InitializeComponent();
             
             var mongoDB = new MongoDBServices();
             var repo = new PoddRepository(mongoDB);
-            service = new TestServiceReg(repo);
+            service = new PoddService(repo);
 
             this.Load += FyllSida;
         }
@@ -35,18 +35,9 @@ namespace PL
 
         private void FyllComboBox(object sender, EventArgs e)
         {
-            var allaPoddar = service.HamtaAllaPoddar();
             FilterComboBox.Items.Add("AllaPoddar");
-            List<string> kategoriLista = new List<string>();
-
-            foreach (var podcast in allaPoddar)
-            {
-                string kategori = podcast.Kategori;
-
-                if (!string.IsNullOrEmpty(kategori) && !kategoriLista.Contains(kategori) ) {
-                    kategoriLista.Add(kategori);
-                }
-            }
+            List<string> kategoriLista = new List<string>(); 
+            kategoriLista = service.HamtaUnikaKategorier();
 
             foreach (var kategori in kategoriLista) {
                 FilterComboBox.Items.Add(kategori);
