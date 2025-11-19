@@ -48,7 +48,7 @@ namespace PL
                     avsnittLista.Add(new Avsnitt
                     {
                         Titel = item.Title.Text,
-                        Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", ""), //Beskrivning = flode.Description?.Text, Så var det förut
+                        Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", "").Trim(), //Beskrivning = flode.Description?.Text, Så var det förut
                         PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
                     });
                 }
@@ -70,7 +70,11 @@ namespace PL
         private void visaPODD_Click_1(object sender, EventArgs e)
         {
             if (Validering.IsTomStrang(RSSTEXT.Text))
+            {
                 MessageBox.Show("Vänligen mata in en länk");
+                return;
+            }
+                
                 
 
             string url = RSSTEXT.Text;
