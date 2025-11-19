@@ -33,6 +33,7 @@
             visaPODD = new Button();
             poddTabell = new DataGridView();
             avsnittGrid = new DataGridView();
+            sparaBTN = new Button();
             ((System.ComponentModel.ISupportInitialize)poddTabell).BeginInit();
             ((System.ComponentModel.ISupportInitialize)avsnittGrid).BeginInit();
             SuspendLayout();
@@ -93,12 +94,23 @@
             avsnittGrid.TabIndex = 6;
             avsnittGrid.CellContentClick += avsnittGrid_CellContentClick;
             // 
+            // sparaBTN
+            // 
+            sparaBTN.Location = new Point(1036, 124);
+            sparaBTN.Name = "sparaBTN";
+            sparaBTN.Size = new Size(336, 34);
+            sparaBTN.TabIndex = 7;
+            sparaBTN.Text = "Spara din podd och dess avsnitt";
+            sparaBTN.UseVisualStyleBackColor = true;
+            sparaBTN.Click += sparaBTN_Click;
+            // 
             // PodVisaren
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1549, 858);
+            Controls.Add(sparaBTN);
             Controls.Add(avsnittGrid);
             Controls.Add(poddTabell);
             Controls.Add(visaPODD);
@@ -118,5 +130,6 @@
         private Button visaPODD;
         private DataGridView poddTabell;
         private DataGridView avsnittGrid;
+        private Button sparaBTN;
     }
 }
