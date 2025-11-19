@@ -1,4 +1,5 @@
-﻿using PoddProjektV4.DAL;
+﻿using MongoDB.Driver;
+using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System;
 using System.Collections.Generic;
@@ -8,21 +9,13 @@ using System.Threading.Tasks;
 
 namespace PoddProjektV4.BL
 {
-    internal class PoddService
+    public class PoddService
     {
 
-        private readonly PoddRepository repository;
+        private readonly PoddRepository _repository;
         public PoddService(PoddRepository repository)
         {
-            this.repository = repository;
-        }
-        public List<Podcast> HamtaAllaPoddar()
-        {
-            return repository.HamtaAllt();
-        }
-        public bool TaBortPodcast(string id)
-        {
-            return repository.Radera(id);
+            _repository = repository;
         }
         //public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
         //{
@@ -33,5 +26,37 @@ namespace PoddProjektV4.BL
         //    return await repository.TaBortKategoriFranAllaAsync(kategori);
         //}
 
+        public async Task<bool> PodcastFinnsAsync(string id)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
+
+            return await _repository
+                .podcastKollektion
+                .Find(filter)
+                .AnyAsync();
+        }
+        public async Task LaggTillAsync(Podcast podcast)
+        {
+            if (!await PodcastFinnsAsync(podcast.Id))
+            {
+                await _repository.LaggTillAsync(podcast);
+            }
+        }
+        public async Task<bool> UppdateraAsync(Podcast nyPodcast)
+        {
+            return await _repository.UppdateraAsync(nyPodcast);
+        }
+        public async Task<bool> RaderaAsync(string id)
+        {
+            return await _repository.RaderaAsync(id);
+        }
+        public async Task<Podcast?> HamtaMedIdAsync(string id)
+        {
+            return await _repository.HamtaMedIdAsync(id);
+        }
+        public async Task<List<Podcast>> HamtaAllaPoddarAsync()
+        {
+            return await _repository.HamtaAlltAsync();
+        }
     }
 }

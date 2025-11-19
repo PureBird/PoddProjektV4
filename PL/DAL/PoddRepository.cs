@@ -11,72 +11,23 @@ namespace PoddProjektV4.DAL
 {
     public class PoddRepository : IRepository<Podcast>
     {
-        private readonly MongoDBServices _mongoDBServices;
-        public PoddRepository(MongoDBServices mongoDBServices)
+        public readonly IMongoCollection<Podcast> podcastKollektion;
+        public PoddRepository()
         {
-            _mongoDBServices = mongoDBServices;
+            var klient = new MongoClient("mongodb+srv://OruMongoDBAdmin:hej@orumongodb.8yb9y4t.mongodb.net/?appName=OruMongoDB");
+            var databas = klient.GetDatabase("OruMongoDB");
+            podcastKollektion = databas.GetCollection<Podcast>("Poddar");
         }
-        public bool PodcastFinns(string id)
+        public async Task<bool> LaggTillAsync(Podcast podcast)
         {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
-
-            return _mongoDBServices.podcastKollektion.Find(filter).Any();
-        }
-        public void LaggTill(Podcast podcast)
-        {
-            if (!PodcastFinns(podcast.Id))
+            try
             {
-                _mongoDBServices.podcastKollektion.InsertOne(podcast);
+                await podcastKollektion.InsertOneAsync(podcast);
+                return true;
             }
-        }
-        public bool Uppdatera(Podcast nyPodcast)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, nyPodcast.Id);
-            var uppdatering = Builders<Podcast>.Update
-                .Set(p => p.Titel, nyPodcast.Titel)
-                .Set(p => p.Beskrivning, nyPodcast.Beskrivning)
-                .Set(p => p.Kategori, nyPodcast.Kategori)
-                .Set(p => p.PoddAvsnitt, nyPodcast.PoddAvsnitt);
-
-            var resultat = _mongoDBServices.podcastKollektion.UpdateOne(filter, uppdatering);
-            return resultat.ModifiedCount > 0;
-        }
-        public bool Radera(string id)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
-            var resultat = _mongoDBServices.podcastKollektion.DeleteOne(filter);
-            return resultat.DeletedCount > 0;
-        }
-        public Podcast? HamtaMedId(string id)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
-            Podcast? podcastKopia = _mongoDBServices.podcastKollektion.Find(filter).FirstOrDefault();
-            return podcastKopia;
-        }
-        public List<Podcast> HamtaAllt()
-        {
-            var filter = Builders<Podcast>.Filter.Empty;
-            List<Podcast> listaMedPodcasts = _mongoDBServices.podcastKollektion.Find(filter).ToList();
-            return listaMedPodcasts;
-        }
-
-
-        public async Task<bool> PodcastFinnsAsync(string id)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
-
-            return await _mongoDBServices
-                .podcastKollektion
-                .Find(filter)
-                .AnyAsync();
-        }
-        public async Task LaggTillAsync(Podcast podcast)
-        {
-            if (!await PodcastFinnsAsync(podcast.Id))
+            catch
             {
-                await _mongoDBServices
-                    .podcastKollektion
-                    .InsertOneAsync(podcast);
+                return false;
             }
         }
         public async Task<bool> UppdateraAsync(Podcast nyPodcast)
@@ -89,8 +40,7 @@ namespace PoddProjektV4.DAL
                 .Set(p => p.Kategori, nyPodcast.Kategori)
                 .Set(p => p.PoddAvsnitt, nyPodcast.PoddAvsnitt);
 
-            var resultat = await _mongoDBServices
-                .podcastKollektion
+            var resultat = await podcastKollektion
                 .UpdateOneAsync(filter, uppdatering);
 
             return resultat.ModifiedCount > 0;
@@ -99,8 +49,7 @@ namespace PoddProjektV4.DAL
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
 
-            var resultat = await _mongoDBServices
-                .podcastKollektion
+            var resultat = await podcastKollektion
                 .DeleteOneAsync(filter);
 
             return resultat.DeletedCount > 0;
@@ -109,8 +58,7 @@ namespace PoddProjektV4.DAL
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
 
-            Podcast? podcastKopia = await _mongoDBServices
-                .podcastKollektion
+            Podcast? podcastKopia = await podcastKollektion
                 .Find(filter)
                 .FirstOrDefaultAsync();
 
@@ -120,53 +68,40 @@ namespace PoddProjektV4.DAL
         {
             var filter = Builders<Podcast>.Filter.Empty;
 
-            List<Podcast> listaMedPodcasts = await _mongoDBServices
-                .podcastKollektion
+            List<Podcast> listaMedPodcasts = await podcastKollektion
                 .Find(filter)
                 .ToListAsync();
 
             return listaMedPodcasts;
         }
-        /*public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
+        public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, poddId);
-            var update = Builders<Podcast>.Update.Pull(p => p.Kategori, kategoriAttTaBort);
+            var update = Builders<Podcast>.Update.Set(kategoriAttTaBort, "");
 
-            var resultat = await _mongoDBServices
-                .podcastKollektion
-                .UpdateOneAsync(filter, update);
+            var resultat = await podcastKollektion.UpdateOneAsync(filter, update);
 
             return resultat.ModifiedCount > 0;
         }
-        public async Task<int> TaBortKategoriFranAllaAsync(string kategoriAttTaBort)
+        /*public async Task<int> TaBortKategoriFranAllaAsync(string kategoriAttTaBort)
         {
             //Måste ändra kategorier till en List
             //Då måste även Eq ändras till AnyEq
             var filter = Builders<Podcast>.Filter.Eq(p => p.Kategori, kategoriAttTaBort);
             var update = Builders<Podcast>.Update.Pull(p => p.Kategori, kategoriAttTaBort);
             
-            var resultat = await _mongoDBServices
-                .podcastKollektion
+            var resultat = await podcastKollektion
                 .UpdateManyAsync(filter, update);
 
             //Kanske endast vill returnera siffran ändrade dokument? 
             return (int)resultat.ModifiedCount;
         }*/
-        public async Task<bool> AndraKategoriForEnPoddAsync(string poddId, string gammalKategori, string nyKategori)
+        public async Task<bool> AndraKategoriForEnPoddAsync(string poddId, string nyKategori)
         {
-            //Lägger två filter.
-            var filter = Builders<Podcast>.Filter.And(
-                Builders<Podcast>.Filter.Eq(p => p.Id, poddId),
-                Builders<Podcast>.Filter.Eq("Kategori", gammalKategori) //Eftersom Kategori är en Array.
-                );
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, poddId);
+            var update = Builders<Podcast>.Update.Set(p => p.Kategori, nyKategori);
 
-            //"Kategori" utgår från att detta är namnet på en array i dokumentet.
-            //$-tecknet anger att det endast är det första elementet som matchar kraven som ska ändras.
-            //Därmed, titta i arrayen med filtret -> Ersätt med nyKategori -> Lämna resten orört.
-            var update = Builders<Podcast>.Update.Set("Kategori.$", nyKategori);
-
-            var resultat = await _mongoDBServices
-                .podcastKollektion
+            var resultat = await podcastKollektion
                 .UpdateOneAsync(filter, update);
 
             return resultat.ModifiedCount > 0;
@@ -176,8 +111,7 @@ namespace PoddProjektV4.DAL
             var filter = Builders<Podcast>.Filter.Eq("Kategori", gammalKategori);
             var update = Builders<Podcast>.Update.Set("Kategori.$", nyKategori);
 
-            var resultat = await _mongoDBServices
-                .podcastKollektion
+            var resultat = await podcastKollektion
                 .UpdateManyAsync(filter, update);
 
             return (int)resultat.ModifiedCount;

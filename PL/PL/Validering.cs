@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace PL
 {
-    internal class Validering
+    public class Validering
     {
+        //Returnerar true om strängen är tom.
+        public bool IsTomStrang(string testStrang)
+        {
+            return string.IsNullOrEmpty(testStrang);
+        }
     }
 }

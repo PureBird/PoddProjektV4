@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using PoddProjektV4.BL;
 using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System;
@@ -16,13 +16,13 @@ namespace PL
 {
     public partial class Kategorier : Form
     {
-        private readonly PatrickPoddService _poddService;
+        private readonly PoddService _poddService;
         public Kategorier()
         {
             InitializeComponent();
 
             MongoDBServices mongoDBServices = new MongoDBServices();
-            PoddRepository poddRepository = new PoddRepository(mongoDBServices);
+            PoddRepository poddRepository = new PoddRepository();
             //_poddService = new PatrickPoddService(poddRepository);
 
             RensaUI();
