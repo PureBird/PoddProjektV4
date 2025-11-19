@@ -7,15 +7,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PoddProjektV4.DAL;
+using BL;
+
 
 namespace PL
 {
     public partial class Register : Form
     {
+        private TestServiceReg service;
         public Register()
         {
             InitializeComponent();
+            
+            var mongoDB = new MongoDBServices();
+            var repo = new PoddRepository(mongoDB);
+            service = new TestServiceReg(repo);
+
+            this.Load += FyllSida;
         }
+
+        private void FyllSida(object sender, EventArgs e)
+        {
+            FyllRegister(sender, e);
+            FyllComboBox(sender, e);
+        }
+
+        private void FyllComboBox(object sender, EventArgs e)
+        {
+            var allaPoddar = service.HamtaAllaPoddar();
+            FilterComboBox.Items.Add("AllaPoddar");
+            List<string> kategoriLista = new List<string>();
+
+            foreach (var podcast in allaPoddar)
+            {
+                string kategori = podcast.Kategori;
+
+                if (!string.IsNullOrEmpty(kategori) && !kategoriLista.Contains(kategori) ) {
+                    kategoriLista.Add(kategori);
+                }
+            }
+
+            foreach (var kategori in kategoriLista) {
+                FilterComboBox.Items.Add(kategori);
+            }
+
+        }
+
+        private void FyllRegister(object sender, EventArgs e)
+        {
+            var allaPoddar = service.HamtaAllaPoddar();
+            dataGridView1.Rows.Clear();
+
+            foreach (var podcast in allaPoddar)
+            {
+                dataGridView1.Rows.Add(
+                    podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
+            }
+        }
+
+        
+
 
         private void button1_Click(object sender, EventArgs e)
         {
