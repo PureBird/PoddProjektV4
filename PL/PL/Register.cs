@@ -64,26 +64,45 @@ namespace PL
 
         private async void FilterComboBoxSelect(object sender, EventArgs e)
         {
-            if (FilterComboBox.SelectedItem == "Alla Poddar")
+            var allaPoddar = await service.HamtaAllaPoddarAsync();
+
+            dataGridView1.Rows.Clear();
+
+            if (FilterComboBox.Text == "Alla Poddar")
             {
-                laddadePoddar.Clear();
-                await FyllRegister(sender, e);
+                laddadePoddar = allaPoddar;
+                //await FyllRegister(sender, e);
             }
 
             else
             {
-                laddadePoddar.Clear();
-                laddadePoddar = await service.HamtaAllaPoddarAsync();
-                dataGridView1.Rows.Clear();
-                foreach (var podcast in laddadePoddar)
-                {
-                    if (podcast.Kategori == FilterComboBox.Text)
-                    {
-                        dataGridView1.Rows.Add(
-                            podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
-                    }
-                }
+                laddadePoddar = allaPoddar
+                    .Where(p => p.Kategori == FilterComboBox.Text)
+                    .ToList();
+                    
+                //    Clear();
+                //laddadePoddar = await service.HamtaAllaPoddarAsync();
+                //dataGridView1.Rows.Clear();
+                //foreach (var podcast in laddadePoddar)
+                //{
+                //    if (podcast.Kategori == FilterComboBox.Text)
+                //    {
+                //        dataGridView1.Rows.Add(
+                //            podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
+                //    }
+                //}
             }
+
+            foreach (var podcast in laddadePoddar)
+            {
+                    dataGridView1.Rows.Add(
+                        podcast.Titel, 
+                        podcast.Beskrivning, 
+                        podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0
+                    );
+            }
+
+
         }
 
         private void CellKlickad(object sender, DataGridViewCellEventArgs e)
@@ -92,8 +111,8 @@ namespace PL
 
             Podcast valdPodcast = laddadePoddar[e.RowIndex];
 
-            PoddInfo poddInfoForm = new PoddInfo(valdPodcast);
-            poddInfoForm.Show();
+            new PoddInfo(valdPodcast).Show();
+            this.Close();
         }
 
 
