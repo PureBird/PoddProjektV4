@@ -14,5 +14,14 @@ namespace PL
             return string.IsNullOrEmpty(testStrang);
             
         }
+
+        public static bool arHTTPSLank(string testStrang)
+        {
+            if( testStrang.StartsWith("https://"))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

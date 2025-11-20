@@ -30,16 +30,19 @@ namespace PL
                 //klassen syndicationfeed läser av xml filen 
                 SyndicationFeed flode = SyndicationFeed.Load(XMLlasare);
 
-    //            var kategoriText = flode.ElementExtensions
-    //.Where(ext => ext.OuterName == "category" &&
-    //              ext.OuterNamespace.Contains("itunes"))
-    //.Select(ext =>
-    //{
-    //    using var r = ext.GetReader();
-    //    r.MoveToContent();
-    //    return r.GetAttribute("text");
-    //})
-    //.FirstOrDefault();
+
+                //hämtar itunes-kategori
+            string kategoriText = flode.ElementExtensions //skapar kategori variabel
+                .Where(extension => extension.OuterName == "category" && //den letar efter category det är outername för att "itunes" är ett objekt i rss flödet så det räknas inte som outer name
+            extension.OuterNamespace.Contains("itunes")) //säkerställ att det är category för att "itunes" måste stå först
+                .Select(extension =>
+            {
+                //i rss står det category="comedy" vi måste ha en xml läsare för att kunna läsa av det 
+                using XmlReader XMLlasare = extension.GetReader(); 
+                XMLlasare.MoveToContent();
+                return XMLlasare.GetAttribute("text"); //läsa det som står i "text"
+            })
+                .FirstOrDefault();//ta första du hittar, kan vara null om inget hittas 
 
 
                 List<Avsnitt> avsnittLista = new List<Avsnitt>();
@@ -58,7 +61,7 @@ namespace PL
                     Id = Guid.NewGuid().ToString(),
                     Titel = flode.Title.Text,
                     Beskrivning = flode.Description?.Text,
-                    Kategori = null,
+                    Kategori = kategoriText,
                     PoddAvsnitt = avsnittLista
                 };
                 return dinPodd;
@@ -72,6 +75,12 @@ namespace PL
             if (Validering.IsTomStrang(RSSTEXT.Text))
             {
                 MessageBox.Show("Vänligen mata in en länk");
+                return;
+            }
+
+            if (Validering.arHTTPSLank(RSSTEXT.Text))
+            {
+                MessageBox.Show("Länken måste vara HTTPS");
                 return;
             }
                 
@@ -121,9 +130,22 @@ namespace PL
         private async void sparaBTN_Click(object sender, EventArgs e)
         {
 
-          await _poddRepo.LaggTillAsync(dinPodd);
-            MessageBox.Show("podden sparades");
+          bool lyckadSpara = await _poddRepo.LaggTillAsync(dinPodd);
 
+            if(dinPodd == null)
+            {
+                MessageBox.Show("Du måste hämta en podd för att kunna spara");
+                return;
+            }
+
+            if (lyckadSpara)
+            {
+                MessageBox.Show("podden sparades");
+            }else
+            {
+                MessageBox.Show("Det gick inte att spara podden");
+
+            }
         }
     }
 }
