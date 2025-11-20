@@ -12,7 +12,6 @@ namespace PL
         public static bool IsTomStrang(string testStrang)
         {
             return string.IsNullOrEmpty(testStrang);
-            
         }
 
         public static bool arHTTPSLank(string testStrang)

@@ -95,10 +95,10 @@
 
         private void kategorierBtn_Click(object sender, EventArgs e)
         {
-            // objekt kategoriForm = new object();
+            Kategorier kategoriForm = new Kategorier(this);
 
-            //kategoriForm.Show
-            //this.Hide();
+            kategoriForm.Show();
+            this.Hide();
         }
 
 

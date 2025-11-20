@@ -18,6 +18,20 @@ namespace PoddProjektV4.BL
             _repository = repository;
         }
 
+        //public bool PassarKategoriKrav(string kategori)
+        //{
+        //    if(kategori.Length > 15) return false;
+        //    return true;
+        //}
+
+        //public bool PassarPodcastKrav(Podcast podcast)
+        //{
+        //    if(string.IsNullOrEmpty(podcast.Titel) || podcast.Titel.Length > 50) return false;
+        //    if(string.IsNullOrEmpty(podcast.Beskrivning) || podcast.Beskrivning.Length > 500) return false;
+        //    if(!PassarKategoriKrav(podcast.Kategori)) return false;
+        //    return true;
+        //}
+
         public async Task<List<string>> HamtaUnikaKategorier()
         {
             var allaPoddar = await HamtaAllaPoddarAsync();
@@ -36,24 +50,25 @@ namespace PoddProjektV4.BL
             return kategoriLista;
 
         }
-
-        //public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId, string kategoriAttTaBort)
-        //{
-        //    return await repository.TaBortEnKategoriFranPoddAsync(poddId, kategoriAttTaBort);
-        //}
-        //public async Task<int> TaBortKategoriFranAllaAsync(string kategori)
-        //{
-        //    return await repository.TaBortKategoriFranAllaAsync(kategori);
-        //}
-
+        public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId)
+        {
+            return await _repository.TaBortEnKategoriFranPoddAsync(poddId);
+        }
+        public async Task<int> TaBortKategoriFranAllaAsync(string kategori)
+        {
+            return await _repository.TaBortKategoriFranAllaAsync(kategori);
+        }
+        public async Task<bool> AndraKategoriForEnPoddAsync(string poddId, string nyKategori)
+        {
+            return await _repository.AndraKategoriForEnPoddAsync(poddId, nyKategori);
+        }
+        public async Task<int> AndraKategorierForAllaPoddarAsync(string gammalKategori, string nyKategori)
+        {
+            return await _repository.AndraKategorierForAllaPoddarAsync(gammalKategori, nyKategori);
+        }
         public async Task<bool> PodcastFinnsAsync(string id)
         {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, id);
-
-            return await _repository
-                .podcastKollektion
-                .Find(filter)
-                .AnyAsync();
+            return await _repository.HamtaMedIdAsync(id) != null;
         }
         public async Task LaggTillAsync(Podcast podcast)
         {

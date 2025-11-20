@@ -30,12 +30,10 @@
         {
             BackBtn = new Button();
             CategoryLbl = new Label();
-            CreateRbn = new RadioButton();
             DeleteRbn = new RadioButton();
             EditRbn = new RadioButton();
             CatLbl = new Label();
             CatBtn = new Button();
-            CatTbx = new TextBox();
             CatTbxEdit = new TextBox();
             CatBtnEdit = new Button();
             CatLblEdit = new Label();
@@ -58,34 +56,21 @@
             // CategoryLbl
             // 
             CategoryLbl.Font = new Font("Showcard Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CategoryLbl.Location = new Point(526, 9);
+            CategoryLbl.Location = new Point(552, 9);
             CategoryLbl.Name = "CategoryLbl";
-            CategoryLbl.Size = new Size(163, 28);
+            CategoryLbl.Size = new Size(186, 28);
             CategoryLbl.TabIndex = 1;
             CategoryLbl.Text = "Kategorier";
-            // 
-            // CreateRbn
-            // 
-            CreateRbn.Appearance = Appearance.Button;
-            CreateRbn.AutoSize = true;
-            CreateRbn.Location = new Point(10, 52);
-            CreateRbn.Margin = new Padding(3, 2, 3, 2);
-            CreateRbn.Name = "CreateRbn";
-            CreateRbn.Size = new Size(48, 25);
-            CreateRbn.TabIndex = 4;
-            CreateRbn.TabStop = true;
-            CreateRbn.Text = "Skapa";
-            CreateRbn.UseVisualStyleBackColor = true;
-            CreateRbn.CheckedChanged += CreateRbn_CheckedChanged;
             // 
             // DeleteRbn
             // 
             DeleteRbn.Appearance = Appearance.Button;
             DeleteRbn.AutoSize = true;
-            DeleteRbn.Location = new Point(142, 52);
+            DeleteRbn.Font = new Font("Segoe UI", 11F);
+            DeleteRbn.Location = new Point(95, 57);
             DeleteRbn.Margin = new Padding(3, 2, 3, 2);
             DeleteRbn.Name = "DeleteRbn";
-            DeleteRbn.Size = new Size(53, 25);
+            DeleteRbn.Size = new Size(66, 30);
             DeleteRbn.TabIndex = 5;
             DeleteRbn.TabStop = true;
             DeleteRbn.Text = "Radera";
@@ -96,10 +81,11 @@
             // 
             EditRbn.Appearance = Appearance.Button;
             EditRbn.AutoSize = true;
-            EditRbn.Location = new Point(67, 52);
+            EditRbn.Font = new Font("Segoe UI", 11F);
+            EditRbn.Location = new Point(10, 57);
             EditRbn.Margin = new Padding(3, 2, 3, 2);
             EditRbn.Name = "EditRbn";
-            EditRbn.Size = new Size(63, 25);
+            EditRbn.Size = new Size(79, 30);
             EditRbn.TabIndex = 6;
             EditRbn.TabStop = true;
             EditRbn.Text = "Redigera";
@@ -119,7 +105,7 @@
             // CatBtn
             // 
             CatBtn.Font = new Font("Segoe UI", 12F);
-            CatBtn.Location = new Point(362, 84);
+            CatBtn.Location = new Point(414, 84);
             CatBtn.Name = "CatBtn";
             CatBtn.Size = new Size(78, 29);
             CatBtn.TabIndex = 8;
@@ -127,19 +113,10 @@
             CatBtn.UseVisualStyleBackColor = true;
             CatBtn.Click += CatBtn_Click;
             // 
-            // CatTbx
-            // 
-            CatTbx.Font = new Font("Segoe UI", 12F);
-            CatTbx.Location = new Point(235, 86);
-            CatTbx.Name = "CatTbx";
-            CatTbx.Size = new Size(121, 29);
-            CatTbx.TabIndex = 9;
-            CatTbx.Text = "Placeholder";
-            // 
             // CatTbxEdit
             // 
             CatTbxEdit.Font = new Font("Segoe UI", 12F);
-            CatTbxEdit.Location = new Point(235, 130);
+            CatTbxEdit.Location = new Point(275, 130);
             CatTbxEdit.Name = "CatTbxEdit";
             CatTbxEdit.Size = new Size(121, 29);
             CatTbxEdit.TabIndex = 12;
@@ -148,7 +125,7 @@
             // CatBtnEdit
             // 
             CatBtnEdit.Font = new Font("Segoe UI", 12F);
-            CatBtnEdit.Location = new Point(362, 130);
+            CatBtnEdit.Location = new Point(414, 130);
             CatBtnEdit.Name = "CatBtnEdit";
             CatBtnEdit.Size = new Size(78, 29);
             CatBtnEdit.TabIndex = 11;
@@ -171,7 +148,7 @@
             CatCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             CatCbx.Font = new Font("Segoe UI", 12F);
             CatCbx.FormattingEnabled = true;
-            CatCbx.Location = new Point(235, 86);
+            CatCbx.Location = new Point(275, 85);
             CatCbx.Name = "CatCbx";
             CatCbx.Size = new Size(121, 29);
             CatCbx.TabIndex = 14;
@@ -180,11 +157,11 @@
             // 
             AlertLbl.AutoEllipsis = true;
             AlertLbl.Font = new Font("Segoe UI", 12F);
-            AlertLbl.Location = new Point(446, 84);
+            AlertLbl.Location = new Point(498, 84);
             AlertLbl.MaximumSize = new Size(240, 50);
             AlertLbl.MinimumSize = new Size(240, 0);
             AlertLbl.Name = "AlertLbl";
-            AlertLbl.Size = new Size(240, 50);
+            AlertLbl.Size = new Size(240, 49);
             AlertLbl.TabIndex = 15;
             AlertLbl.Text = "Placeholder";
             AlertLbl.TextAlign = ContentAlignment.TopCenter;
@@ -193,7 +170,7 @@
             // 
             AlertLblEditCount.AutoEllipsis = true;
             AlertLblEditCount.Font = new Font("Segoe UI", 12F);
-            AlertLblEditCount.Location = new Point(446, 130);
+            AlertLblEditCount.Location = new Point(498, 130);
             AlertLblEditCount.MaximumSize = new Size(240, 50);
             AlertLblEditCount.MinimumSize = new Size(240, 0);
             AlertLblEditCount.Name = "AlertLblEditCount";
@@ -206,19 +183,17 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(700, 188);
+            ClientSize = new Size(750, 205);
             Controls.Add(AlertLblEditCount);
             Controls.Add(AlertLbl);
             Controls.Add(CatCbx);
             Controls.Add(CatLblEdit);
             Controls.Add(CatTbxEdit);
             Controls.Add(CatBtnEdit);
-            Controls.Add(CatTbx);
             Controls.Add(CatBtn);
             Controls.Add(CatLbl);
             Controls.Add(EditRbn);
             Controls.Add(DeleteRbn);
-            Controls.Add(CreateRbn);
             Controls.Add(CategoryLbl);
             Controls.Add(BackBtn);
             Margin = new Padding(3, 2, 3, 2);
@@ -232,12 +207,10 @@
 
         private Button BackBtn;
         private Label CategoryLbl;
-        private RadioButton CreateRbn;
         private RadioButton DeleteRbn;
         private RadioButton EditRbn;
         private Label CatLbl;
         private Button CatBtn;
-        private TextBox CatTbx;
         private TextBox CatTbxEdit;
         private Button CatBtnEdit;
         private Label CatLblEdit;
