@@ -17,7 +17,7 @@ namespace PL
             Register registerForm = new Register(this, _poddService);
 
             registerForm.Show();
-            //this.Hide();
+            this.Hide();
         }
 
         private void sokBtn_Click(object sender, EventArgs e)
