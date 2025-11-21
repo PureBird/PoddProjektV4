@@ -50,6 +50,12 @@ namespace PoddProjektV4.BL
             return kategoriLista;
 
         }
+        public async Task<List<Podcast>> HamtaPoddarMedKategori(string kategori)
+        {
+            var allaPoddar = await HamtaAllaPoddarAsync();
+            return allaPoddar.Where(p => p.Kategori == kategori)
+                .ToList();
+        }
         public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId)
         {
             return await _repository.TaBortEnKategoriFranPoddAsync(poddId);

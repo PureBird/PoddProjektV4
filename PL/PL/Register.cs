@@ -17,15 +17,15 @@ namespace PL
 {
     public partial class Register : Form
     {
-        private PoddService service;
+        private readonly PoddService service;
         private List<Podcast> laddadePoddar;
-        public Register(Meny originalForm)
+        private readonly Meny menyForm;
+        public Register(Meny originalForm, PoddService service)
         {
             InitializeComponent();
             
             var mongoDB = new MongoDBServices();
-            var repo = new PoddRepository();
-            service = new PoddService(repo);
+            this.service = service;
             Meny menyForm = originalForm;
 
             this.Load += FyllSida;
@@ -66,33 +66,16 @@ namespace PL
 
         private async void FilterComboBoxSelect(object sender, EventArgs e)
         {
-            var allaPoddar = await service.HamtaAllaPoddarAsync();
-
             dataGridView1.Rows.Clear();
 
             if (FilterComboBox.Text == "Alla Poddar")
             {
-                laddadePoddar = allaPoddar;
-                //await FyllRegister(sender, e);
+                laddadePoddar = await service.HamtaAllaPoddarAsync();
             }
 
             else
             {
-                laddadePoddar = allaPoddar
-                    .Where(p => p.Kategori == FilterComboBox.Text)
-                    .ToList();
-                    
-                //    Clear();
-                //laddadePoddar = await service.HamtaAllaPoddarAsync();
-                //dataGridView1.Rows.Clear();
-                //foreach (var podcast in laddadePoddar)
-                //{
-                //    if (podcast.Kategori == FilterComboBox.Text)
-                //    {
-                //        dataGridView1.Rows.Add(
-                //            podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
-                //    }
-                //}
+                laddadePoddar = await service.HamtaPoddarMedKategori(FilterComboBox.Text);
             }
 
             foreach (var podcast in laddadePoddar)
