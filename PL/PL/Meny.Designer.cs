@@ -77,29 +77,9 @@
         }
 
 
-        private void registerBtn_Click(object sender, EventArgs e)
-        {
-            Register registerForm = new Register();
+        
 
-            registerForm.Show();
-            //this.Hide();
-        }
-
-        private void sokBtn_Click(object sender, EventArgs e)
-        {
-            PodVisaren sokForm = new PodVisaren();
-
-            sokForm.Show();
-            this.Hide();
-        }
-
-        private void kategorierBtn_Click(object sender, EventArgs e)
-        {
-            Kategorier kategoriForm = new Kategorier(this);
-
-            kategoriForm.Show();
-            this.Hide();
-        }
+        
 
 
         #endregion
