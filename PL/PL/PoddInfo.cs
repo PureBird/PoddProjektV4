@@ -89,5 +89,14 @@ namespace PL
             await service.UppdateraAsync(Podcast);
             PoddTitel.Text = Podcast.Titel;
         }
+
+        private void btnTillbaka_Click(object sender, EventArgs e)
+        {
+            Register registerForm = new Register();
+            registerForm.Show();
+            this.Close();
+        }
+
+      
     }
 }
