@@ -17,14 +17,13 @@ namespace PL
     public partial class Kategorier : Form
     {
         private readonly PoddService _poddService;
-        private Meny _menyForm;
-        public Kategorier(Meny OriginalForm)
+        private readonly Meny _menyForm;
+        public Kategorier(Meny meny, PoddService poddService)
         {
             InitializeComponent();
 
-            _poddService = new PoddService(new PoddRepository());
-            _menyForm = OriginalForm;
-
+            _poddService = poddService;
+            _menyForm = meny;
 
             RensaUI();
             EditRbn.Checked = true;
@@ -49,7 +48,7 @@ namespace PL
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            _menyForm.Show();
+            Application.Exit();
             base.OnFormClosing(e);
         }
 
