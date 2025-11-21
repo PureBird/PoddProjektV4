@@ -19,14 +19,17 @@ namespace PL
     {
         private readonly PoddService service;
         private Podcast Podcast;
+        private Register registerForm;
 
-        public PoddInfo(Podcast podcast)
+        public PoddInfo(Podcast podcast, Register register)
         {
             InitializeComponent();
 
             var repo = new PoddRepository();
             service = new PoddService(repo);
             Podcast = podcast;
+            this.registerForm = register;
+
 
 
             //Labels
@@ -78,21 +81,26 @@ namespace PL
 
         private async void btnAndraKategori_Click(object sender, EventArgs e)
         {
-            Podcast.Kategori = tbNykategori.Text;
-            await service.UppdateraAsync(Podcast);
-            Kategori1.Text = Podcast.Kategori;
+            if (Validering.IsTomStrang(tbNykategori.Text))
+            {
+                Podcast.Kategori = tbNykategori.Text;
+                await service.UppdateraAsync(Podcast);
+                Kategori1.Text = Podcast.Kategori;
+            }
         }
 
         private async void btnAndraTitel_Click(object sender, EventArgs e)
         {
-            Podcast.Titel = txbAndraTitel.Text;
-            await service.UppdateraAsync(Podcast);
-            PoddTitel.Text = Podcast.Titel;
+            if (Validering.IsTomStrang(txbAndraTitel.Text))
+            {
+                Podcast.Titel = txbAndraTitel.Text;
+                await service.UppdateraAsync(Podcast);
+                PoddTitel.Text = Podcast.Titel;
+            }
         }
 
         private void btnTillbaka_Click(object sender, EventArgs e)
         {
-            Register registerForm = new Register();
             registerForm.Show();
             this.Close();
         }
