@@ -20,6 +20,7 @@ namespace PL
         private readonly PoddService service;
         private List<Podcast> laddadePoddar;
         private readonly Meny menyForm;
+        private bool trycktTillbaka = false;
         public Register(Meny originalForm, PoddService service)
         {
             InitializeComponent();
@@ -99,19 +100,18 @@ namespace PL
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void TillbakaBtn_Click(object sender, EventArgs e)
         {
+            trycktTillbaka = true;
             menyForm.Show();
             this.Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            menyForm.Show();
+            if (!trycktTillbaka) Application.Exit();
             base.OnFormClosing(e);
         }
-
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

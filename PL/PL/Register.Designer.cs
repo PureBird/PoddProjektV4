@@ -46,7 +46,7 @@
             TillbakaBtn.TabIndex = 0;
             TillbakaBtn.Text = "<- Tillbaka";
             TillbakaBtn.UseVisualStyleBackColor = true;
-            TillbakaBtn.Click += button1_Click;
+            TillbakaBtn.Click += TillbakaBtn_Click;
             // 
             // h1
             // 

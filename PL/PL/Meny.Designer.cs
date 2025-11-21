@@ -63,23 +63,23 @@
             KategorierBtn.UseVisualStyleBackColor = true;
             KategorierBtn.Click += kategorierBtn_Click;
             // 
-            // Meny2
+            // Meny
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(405, 450);
             Controls.Add(KategorierBtn);
             Controls.Add(SokBtn);
             Controls.Add(RegisterBtn);
-            Name = "Meny2";
+            Name = "Meny";
             Text = "Form1";
             ResumeLayout(false);
         }
 
 
-        
 
-        
+
+
 
 
         #endregion

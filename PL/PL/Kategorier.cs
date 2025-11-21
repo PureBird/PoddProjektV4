@@ -18,12 +18,15 @@ namespace PL
     {
         private readonly PoddService _poddService;
         private readonly Meny _menyForm;
+        private bool trycktTillbaka = false;
         public Kategorier(Meny meny, PoddService poddService)
         {
-            InitializeComponent();
-
             _poddService = poddService;
             _menyForm = meny;
+
+            InitializeComponent();
+
+            
 
             RensaUI();
             EditRbn.Checked = true;
@@ -42,13 +45,14 @@ namespace PL
 
         private void BackBtn_Click(object sender, EventArgs e)
         {
+            trycktTillbaka = true;
             _menyForm.Show();
             this.Close();
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            Application.Exit();
+            if(!trycktTillbaka) Application.Exit();
             base.OnFormClosing(e);
         }
 
