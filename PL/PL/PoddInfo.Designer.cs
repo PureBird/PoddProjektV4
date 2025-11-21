@@ -36,6 +36,8 @@
             AvsnittInfo = new TextBox();
             btnAndraKategori = new Button();
             tbNykategori = new TextBox();
+            btnAndraTitel = new Button();
+            txbAndraTitel = new TextBox();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -97,11 +99,30 @@
             tbNykategori.Size = new Size(150, 31);
             tbNykategori.TabIndex = 5;
             // 
+            // btnAndraTitel
+            // 
+            btnAndraTitel.Location = new Point(504, 25);
+            btnAndraTitel.Name = "btnAndraTitel";
+            btnAndraTitel.Size = new Size(112, 34);
+            btnAndraTitel.TabIndex = 6;
+            btnAndraTitel.Text = "Ändra titel";
+            btnAndraTitel.UseVisualStyleBackColor = true;
+            btnAndraTitel.Click += btnAndraTitel_Click;
+            // 
+            // txbAndraTitel
+            // 
+            txbAndraTitel.Location = new Point(504, 75);
+            txbAndraTitel.Name = "txbAndraTitel";
+            txbAndraTitel.Size = new Size(112, 31);
+            txbAndraTitel.TabIndex = 7;
+            // 
             // PoddInfo
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txbAndraTitel);
+            Controls.Add(btnAndraTitel);
             Controls.Add(tbNykategori);
             Controls.Add(btnAndraKategori);
             Controls.Add(AvsnittInfo);
@@ -124,5 +145,7 @@
         private TextBox AvsnittInfo;
         private Button btnAndraKategori;
         private TextBox tbNykategori;
+        private Button btnAndraTitel;
+        private TextBox txbAndraTitel;
     }
 }
