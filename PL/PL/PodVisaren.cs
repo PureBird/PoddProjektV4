@@ -1,3 +1,4 @@
+using PoddProjektV4.BL;
 using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System;
@@ -16,10 +17,13 @@ namespace PL
     {
         private readonly PoddRepository _poddRepo;
         private Podcast dinPodd;
-        public PodVisaren()
+        private readonly Meny _meny;
+        private readonly PoddService poddService;
+        public PodVisaren(Meny meny, PoddService poddService)
         {
             InitializeComponent();
             _poddRepo = new PoddRepository();
+
 
         }
 
@@ -32,17 +36,17 @@ namespace PL
 
 
                 //hämtar itunes-kategori
-            string kategoriText = flode.ElementExtensions //skapar kategori variabel
-                .Where(extension => extension.OuterName == "category" && //den letar efter category det är outername för att "itunes" är ett objekt i rss flödet så det räknas inte som outer name
-            extension.OuterNamespace.Contains("itunes")) //säkerställ att det är category för att "itunes" måste stå först
-                .Select(extension =>
-            {
-                //i rss står det category="comedy" vi måste ha en xml läsare för att kunna läsa av det 
-                using XmlReader XMLlasare = extension.GetReader(); 
-                XMLlasare.MoveToContent();
-                return XMLlasare.GetAttribute("text"); //läsa det som står i "text"
-            })
-                .FirstOrDefault();//ta första du hittar, kan vara null om inget hittas 
+                string kategoriText = flode.ElementExtensions //skapar kategori variabel
+                    .Where(extension => extension.OuterName == "category" && //den letar efter category det är outername för att "itunes" är ett objekt i rss flödet så det räknas inte som outer name
+                extension.OuterNamespace.Contains("itunes")) //säkerställ att det är category för att "itunes" måste stå först
+                    .Select(extension =>
+                {
+                    //i rss står det category="comedy" vi måste ha en xml läsare för att kunna läsa av det 
+                    using XmlReader XMLlasare = extension.GetReader();
+                    XMLlasare.MoveToContent();
+                    return XMLlasare.GetAttribute("text"); //läsa det som står i "text"
+                })
+                    .FirstOrDefault();//ta första du hittar, kan vara null om inget hittas 
 
 
                 List<Avsnitt> avsnittLista = new List<Avsnitt>();
@@ -83,8 +87,8 @@ namespace PL
                 MessageBox.Show("Länken måste vara HTTPS");
                 return;
             }
-                
-                
+
+
 
             string url = RSSTEXT.Text;
             dinPodd = HamtaPodd(url);
@@ -130,9 +134,9 @@ namespace PL
         private async void sparaBTN_Click(object sender, EventArgs e)
         {
 
-          bool lyckadSpara = await _poddRepo.LaggTillAsync(dinPodd);
+            bool lyckadSpara = await _poddRepo.LaggTillAsync(dinPodd);
 
-            if(dinPodd == null)
+            if (dinPodd == null)
             {
                 MessageBox.Show("Du måste hämta en podd för att kunna spara");
                 return;
@@ -141,11 +145,24 @@ namespace PL
             if (lyckadSpara)
             {
                 MessageBox.Show("podden sparades");
-            }else
+            }
+            else
             {
                 MessageBox.Show("Det gick inte att spara podden");
 
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TillbakaBtn_Click(object sender, EventArgs e)
+        {
+            PodVisaren podvisarForm = new PodVisaren();
+            podvisarForm.Show();
+            this.Close();
         }
     }
 }
