@@ -34,6 +34,7 @@
             poddTabell = new DataGridView();
             avsnittGrid = new DataGridView();
             sparaBTN = new Button();
+            TillbakaBtn = new Button();
             ((System.ComponentModel.ISupportInitialize)poddTabell).BeginInit();
             ((System.ComponentModel.ISupportInitialize)avsnittGrid).BeginInit();
             SuspendLayout();
@@ -43,11 +44,12 @@
             label1.AutoSize = true;
             label1.BackColor = SystemColors.ActiveCaption;
             label1.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(16, 15);
+            label1.Location = new Point(334, 9);
             label1.Name = "label1";
             label1.Size = new Size(796, 71);
             label1.TabIndex = 2;
             label1.Text = "SÖK EFTER DIN FAVORITPODD";
+            label1.Click += label1_Click;
             // 
             // RSSTEXT
             // 
@@ -104,12 +106,25 @@
             sparaBTN.UseVisualStyleBackColor = true;
             sparaBTN.Click += sparaBTN_Click;
             // 
+            // TillbakaBtn
+            // 
+            TillbakaBtn.BackColor = Color.Red;
+            TillbakaBtn.Font = new Font("Yu Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TillbakaBtn.Location = new Point(31, 23);
+            TillbakaBtn.Name = "TillbakaBtn";
+            TillbakaBtn.Size = new Size(144, 43);
+            TillbakaBtn.TabIndex = 8;
+            TillbakaBtn.Text = "Tillbaka";
+            TillbakaBtn.UseVisualStyleBackColor = false;
+            TillbakaBtn.Click += TillbakaBtn_Click;
+            // 
             // PodVisaren
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1549, 858);
+            Controls.Add(TillbakaBtn);
             Controls.Add(sparaBTN);
             Controls.Add(avsnittGrid);
             Controls.Add(poddTabell);
@@ -131,5 +146,6 @@
         private DataGridView poddTabell;
         private DataGridView avsnittGrid;
         private Button sparaBTN;
+        private Button TillbakaBtn;
     }
 }
