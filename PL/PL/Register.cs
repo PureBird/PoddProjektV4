@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using PoddProjektV4.DAL;
 using PoddProjektV4.BL;
 using PoddProjektV4.Models;
+using MongoDB.Driver;
 
 
 namespace PL
@@ -18,13 +19,14 @@ namespace PL
     {
         private PoddService service;
         private List<Podcast> laddadePoddar;
-        public Register()
+        public Register(Meny originalForm)
         {
             InitializeComponent();
             
             var mongoDB = new MongoDBServices();
             var repo = new PoddRepository();
             service = new PoddService(repo);
+            Meny menyForm = originalForm;
 
             this.Load += FyllSida;
             FilterComboBox.SelectedIndexChanged += FilterComboBoxSelect;
@@ -118,10 +120,16 @@ namespace PL
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //Meny menyForm = new Meny();
-            //menyForm.Show();
+            menyForm.Show();
             this.Close();
         }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            menyForm.Show();
+            base.OnFormClosing(e);
+        }
+
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
