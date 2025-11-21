@@ -65,7 +65,7 @@
             // 
             visaPODD.Location = new Point(454, 103);
             visaPODD.Name = "visaPODD";
-            visaPODD.Size = new Size(179, 38);
+            visaPODD.Size = new Size(179, 31);
             visaPODD.TabIndex = 4;
             visaPODD.Text = "Visa din podd";
             visaPODD.UseVisualStyleBackColor = true;
@@ -108,13 +108,13 @@
             // 
             // TillbakaBtn
             // 
-            TillbakaBtn.BackColor = Color.Red;
-            TillbakaBtn.Font = new Font("Yu Gothic", 14F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            TillbakaBtn.Location = new Point(31, 23);
+            TillbakaBtn.BackColor = SystemColors.ActiveCaption;
+            TillbakaBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            TillbakaBtn.Location = new Point(33, 23);
             TillbakaBtn.Name = "TillbakaBtn";
-            TillbakaBtn.Size = new Size(144, 43);
+            TillbakaBtn.Size = new Size(116, 39);
             TillbakaBtn.TabIndex = 8;
-            TillbakaBtn.Text = "Tillbaka";
+            TillbakaBtn.Text = "<-- Tillbaka";
             TillbakaBtn.UseVisualStyleBackColor = false;
             TillbakaBtn.Click += TillbakaBtn_Click;
             // 
