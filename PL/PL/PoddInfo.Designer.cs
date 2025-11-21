@@ -38,6 +38,7 @@
             tbNykategori = new TextBox();
             btnAndraTitel = new Button();
             txbAndraTitel = new TextBox();
+            btnTillbaka = new Button();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -45,7 +46,7 @@
             // 
             PoddTitel.AutoSize = true;
             PoddTitel.Font = new Font("Segoe UI", 19F);
-            PoddTitel.Location = new Point(12, 9);
+            PoddTitel.Location = new Point(12, 73);
             PoddTitel.Name = "PoddTitel";
             PoddTitel.Size = new Size(225, 51);
             PoddTitel.TabIndex = 0;
@@ -54,7 +55,7 @@
             // Kategori1
             // 
             Kategori1.AutoSize = true;
-            Kategori1.Location = new Point(12, 81);
+            Kategori1.Location = new Point(12, 145);
             Kategori1.Name = "Kategori1";
             Kategori1.Size = new Size(88, 25);
             Kategori1.TabIndex = 1;
@@ -68,7 +69,7 @@
             // 
             AvsnittTitel.FormattingEnabled = true;
             AvsnittTitel.ItemHeight = 25;
-            AvsnittTitel.Location = new Point(12, 130);
+            AvsnittTitel.Location = new Point(12, 194);
             AvsnittTitel.Name = "AvsnittTitel";
             AvsnittTitel.Size = new Size(278, 304);
             AvsnittTitel.TabIndex = 2;
@@ -76,15 +77,16 @@
             // 
             // AvsnittInfo
             // 
-            AvsnittInfo.Location = new Point(360, 130);
+            AvsnittInfo.Location = new Point(367, 194);
             AvsnittInfo.Multiline = true;
             AvsnittInfo.Name = "AvsnittInfo";
+            AvsnittInfo.ScrollBars = ScrollBars.Vertical;
             AvsnittInfo.Size = new Size(405, 304);
             AvsnittInfo.TabIndex = 3;
             // 
             // btnAndraKategori
             // 
-            btnAndraKategori.Location = new Point(622, 26);
+            btnAndraKategori.Location = new Point(622, 12);
             btnAndraKategori.Name = "btnAndraKategori";
             btnAndraKategori.Size = new Size(150, 34);
             btnAndraKategori.TabIndex = 4;
@@ -94,14 +96,14 @@
             // 
             // tbNykategori
             // 
-            tbNykategori.Location = new Point(622, 75);
+            tbNykategori.Location = new Point(622, 61);
             tbNykategori.Name = "tbNykategori";
             tbNykategori.Size = new Size(150, 31);
             tbNykategori.TabIndex = 5;
             // 
             // btnAndraTitel
             // 
-            btnAndraTitel.Location = new Point(504, 25);
+            btnAndraTitel.Location = new Point(504, 11);
             btnAndraTitel.Name = "btnAndraTitel";
             btnAndraTitel.Size = new Size(112, 34);
             btnAndraTitel.TabIndex = 6;
@@ -111,16 +113,27 @@
             // 
             // txbAndraTitel
             // 
-            txbAndraTitel.Location = new Point(504, 75);
+            txbAndraTitel.Location = new Point(504, 61);
             txbAndraTitel.Name = "txbAndraTitel";
             txbAndraTitel.Size = new Size(112, 31);
             txbAndraTitel.TabIndex = 7;
+            // 
+            // btnTillbaka
+            // 
+            btnTillbaka.Location = new Point(12, 12);
+            btnTillbaka.Name = "btnTillbaka";
+            btnTillbaka.Size = new Size(112, 34);
+            btnTillbaka.TabIndex = 8;
+            btnTillbaka.Text = "<- Tillbaka";
+            btnTillbaka.UseVisualStyleBackColor = true;
+            btnTillbaka.Click += btnTillbaka_Click;
             // 
             // PoddInfo
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 514);
+            Controls.Add(btnTillbaka);
             Controls.Add(txbAndraTitel);
             Controls.Add(btnAndraTitel);
             Controls.Add(tbNykategori);
@@ -147,5 +160,6 @@
         private TextBox tbNykategori;
         private Button btnAndraTitel;
         private TextBox txbAndraTitel;
+        private Button btnTillbaka;
     }
 }
