@@ -160,8 +160,7 @@ namespace PL
 
         private void TillbakaBtn_Click(object sender, EventArgs e)
         {
-            PodVisaren podvisarForm = new PodVisaren();
-            podvisarForm.Show();
+            _meny.Show();
             this.Close();
         }
     }
