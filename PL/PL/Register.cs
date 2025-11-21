@@ -33,10 +33,10 @@ namespace PL
 
         }
 
-        private void FyllSida(object? sender, EventArgs e)
+        private async void FyllSida(object? sender, EventArgs e)
         {
-            FyllRegister(sender, e);
-            FyllComboBox(sender, e);
+            await FyllRegister(sender, e);
+            await FyllComboBox(sender, e);
         }
 
         private async Task FyllComboBox(object? sender, EventArgs e)
@@ -95,7 +95,7 @@ namespace PL
 
             Podcast valdPodcast = laddadePoddar[e.RowIndex];
 
-            new PoddInfo(valdPodcast, this).Show();
+            new PoddInfo(valdPodcast, menyForm).Show();
             this.Hide();
         }
 

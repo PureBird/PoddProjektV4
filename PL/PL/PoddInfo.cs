@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -21,15 +22,16 @@ namespace PL
         private Podcast Podcast;
         private Register registerForm;
         private bool trycktTillbaka = false;
+        private readonly Meny menyForm;
 
-        public PoddInfo(Podcast podcast, Register register)
+        public PoddInfo(Podcast podcast, Meny meny)
         {
             InitializeComponent();
 
             var repo = new PoddRepository();
             service = new PoddService(repo);
             Podcast = podcast;
-            this.registerForm = register;
+            menyForm = meny;
 
 
 
@@ -82,7 +84,8 @@ namespace PL
 
         private async void btnAndraKategori_Click(object sender, EventArgs e)
         {
-            if (Validering.IsTomStrang(tbNykategori.Text))
+            Debug.WriteLine(Validering.IsTomStrang(txbAndraTitel.Text));
+            if (!Validering.IsTomStrang(tbNykategori.Text))
             {
                 Podcast.Kategori = tbNykategori.Text;
                 await service.UppdateraAsync(Podcast);
@@ -92,7 +95,7 @@ namespace PL
 
         private async void btnAndraTitel_Click(object sender, EventArgs e)
         {
-            if (Validering.IsTomStrang(txbAndraTitel.Text))
+            if (!Validering.IsTomStrang(txbAndraTitel.Text))
             {
                 Podcast.Titel = txbAndraTitel.Text;
                 await service.UppdateraAsync(Podcast);
@@ -103,6 +106,7 @@ namespace PL
         private void btnTillbaka_Click(object sender, EventArgs e)
         {
             trycktTillbaka = true;
+            var registerForm = new Register(menyForm, service);
             registerForm.Show();
             this.Close();
         }
