@@ -23,24 +23,22 @@ namespace PL
         public Register(Meny originalForm, PoddService service)
         {
             InitializeComponent();
-            
-            var mongoDB = new MongoDBServices();
             this.service = service;
-            Meny menyForm = originalForm;
-
+            this.menyForm = originalForm;
+            this.laddadePoddar = new List<Podcast>();
             this.Load += FyllSida;
             FilterComboBox.SelectedIndexChanged += FilterComboBoxSelect;
             dataGridView1.CellClick += CellKlickad;
 
         }
 
-        private void FyllSida(object sender, EventArgs e)
+        private void FyllSida(object? sender, EventArgs e)
         {
             FyllRegister(sender, e);
             FyllComboBox(sender, e);
         }
 
-        private async Task FyllComboBox(object sender, EventArgs e)
+        private async Task FyllComboBox(object? sender, EventArgs e)
         {
             FilterComboBox.Items.Add("Alla Poddar");
             List<string> kategoriLista = new List<string>(); 
@@ -52,7 +50,7 @@ namespace PL
 
         }
 
-        private async Task FyllRegister(object sender, EventArgs e)
+        private async Task FyllRegister(object? sender, EventArgs e)
         {
             laddadePoddar = await service.HamtaAllaPoddarAsync();
             dataGridView1.Rows.Clear();
@@ -64,7 +62,7 @@ namespace PL
             }
         }
 
-        private async void FilterComboBoxSelect(object sender, EventArgs e)
+        private async void FilterComboBoxSelect(object? sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
 
@@ -90,14 +88,14 @@ namespace PL
 
         }
 
-        private void CellKlickad(object sender, DataGridViewCellEventArgs e)
+        private void CellKlickad(object? sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
             Podcast valdPodcast = laddadePoddar[e.RowIndex];
 
-            new PoddInfo(valdPodcast).Show();
-            this.Close();
+            new PoddInfo(valdPodcast, this).Show();
+            this.Hide();
         }
 
 
