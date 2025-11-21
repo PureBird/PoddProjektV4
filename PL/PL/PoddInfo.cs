@@ -20,7 +20,7 @@ namespace PL
     {
         private readonly PoddService service;
         private Podcast Podcast;
-        private readonly Register menyForm;
+        private readonly Meny menyForm;
 
         public PoddInfo(Podcast podcast, Meny meny)
         {
@@ -29,7 +29,7 @@ namespace PL
             var repo = new PoddRepository();
             service = new PoddService(repo);
             Podcast = podcast;
-            var menyForm = meny;
+            menyForm = meny;
 
 
 
@@ -103,6 +103,7 @@ namespace PL
 
         private void btnTillbaka_Click(object sender, EventArgs e)
         {
+            var registerForm = new Register(menyForm, service);
             registerForm.Show();
             this.Close();
         }
