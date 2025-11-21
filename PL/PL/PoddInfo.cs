@@ -20,6 +20,8 @@ namespace PL
     {
         private readonly PoddService service;
         private Podcast Podcast;
+        private Register registerForm;
+        private bool trycktTillbaka = false;
         private readonly Meny menyForm;
 
         public PoddInfo(Podcast podcast, Meny meny)
@@ -103,11 +105,16 @@ namespace PL
 
         private void btnTillbaka_Click(object sender, EventArgs e)
         {
+            trycktTillbaka = true;
             var registerForm = new Register(menyForm, service);
             registerForm.Show();
             this.Close();
         }
 
-      
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            if (!trycktTillbaka) Application.Exit();
+            base.OnFormClosing(e);
+        }
     }
 }
