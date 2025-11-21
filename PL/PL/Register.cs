@@ -94,7 +94,7 @@ namespace PL
 
             Podcast valdPodcast = laddadePoddar[e.RowIndex];
 
-            new PoddInfo(valdPodcast, this).Show();
+            new PoddInfo(valdPodcast, menyForm).Show();
             this.Hide();
         }
 
