@@ -39,6 +39,7 @@
             btnAndraTitel = new Button();
             txbAndraTitel = new TextBox();
             btnTillbaka = new Button();
+            btnTaBort = new Button();
             ((System.ComponentModel.ISupportInitialize)podcastBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -128,11 +129,22 @@
             btnTillbaka.UseVisualStyleBackColor = true;
             btnTillbaka.Click += btnTillbaka_Click;
             // 
+            // btnTaBort
+            // 
+            btnTaBort.Location = new Point(330, 11);
+            btnTaBort.Name = "btnTaBort";
+            btnTaBort.Size = new Size(149, 34);
+            btnTaBort.TabIndex = 9;
+            btnTaBort.Text = "Avprenumerera";
+            btnTaBort.UseVisualStyleBackColor = true;
+            btnTaBort.Click += btnTaBort_Click;
+            // 
             // PoddInfo
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 514);
+            Controls.Add(btnTaBort);
             Controls.Add(btnTillbaka);
             Controls.Add(txbAndraTitel);
             Controls.Add(btnAndraTitel);
@@ -161,5 +173,6 @@
         private Button btnAndraTitel;
         private TextBox txbAndraTitel;
         private Button btnTillbaka;
+        private Button btnTaBort;
     }
 }
