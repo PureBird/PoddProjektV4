@@ -116,5 +116,25 @@ namespace PL
             if (!trycktTillbaka) Application.Exit();
             base.OnFormClosing(e);
         }
+
+        private async void btnTaBort_Click(object sender, EventArgs e)
+        {
+            var svar = MessageBox.Show(
+            "Är du säker på att du vill ta bort denna podcast?",
+            "Bekräfta borttagning",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Warning
+ );
+
+            if (svar == DialogResult.Yes)
+            {
+                await service.RaderaAsync(Podcast.Id);
+                MessageBox.Show("Podcasten har tagits bort.");
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 }
