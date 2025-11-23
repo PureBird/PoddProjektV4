@@ -3,6 +3,7 @@ using PoddProjektV4.Models;
 //using PoddProjektV4.BL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,10 +36,11 @@ namespace PoddProjektV4.DAL
                 await session.CommitTransactionAsync();
                 return true;
             }
-            catch
+            catch (Exception ex)
             {
                 await session.AbortTransactionAsync();
-                throw; //Gör det möjligt att skapa MessageBox i PL-lagret.
+                PrintaExceptionMeddelande(ex);
+                return false;
             }
         }
         public async Task<bool> UppdateraAsync(Podcast nyPodcast)
@@ -60,10 +62,11 @@ namespace PoddProjektV4.DAL
                 await session.CommitTransactionAsync();
                 return resultat.ModifiedCount > 0;
             }
-            catch
+            catch (Exception ex)
             {
                 await session.AbortTransactionAsync();
-                throw;
+                PrintaExceptionMeddelande(ex);
+                return false;
             }
         }
         public async Task<bool> RaderaAsync(string id)
@@ -79,10 +82,11 @@ namespace PoddProjektV4.DAL
                 await session.CommitTransactionAsync();
                 return resultat.DeletedCount > 0;
             }
-            catch
+            catch (Exception ex)
             {
                 await session.AbortTransactionAsync();
-                throw;
+                PrintaExceptionMeddelande(ex);
+                return false;
             }
         }
         public async Task<Podcast?> HamtaMedIdAsync(string id)
@@ -108,82 +112,90 @@ namespace PoddProjektV4.DAL
         public async Task<bool> TaBortEnKategoriFranPoddAsync(string poddId)
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Id, poddId);
-            var update = Builders<Podcast>.Update.Set(p => p.Kategori, "");
+            var uppdatering = Builders<Podcast>.Update.Set(p => p.Kategori, "");
 
             using var session = await _klient.StartSessionAsync();
             session.StartTransaction();
 
             try
             {
-                var resultat = await _podcastKollektion.UpdateOneAsync(session, filter, update);
+                var resultat = await _podcastKollektion.UpdateOneAsync(session, filter, uppdatering);
                 await session.CommitTransactionAsync();
                 return resultat.ModifiedCount > 0;
             }
-            catch
+            catch (Exception ex)
             {
                 await session.AbortTransactionAsync();
-                throw;
+                PrintaExceptionMeddelande(ex);
+                return false;
             }
         }
         public async Task<int> TaBortKategoriFranAllaAsync(string kategoriAttTaBort)
         {
             var filter = Builders<Podcast>.Filter.Eq(p => p.Kategori, kategoriAttTaBort);
-            var update = Builders<Podcast>.Update.Set(p => p.Kategori, "");
+            var uppdatering = Builders<Podcast>.Update.Set(p => p.Kategori, "");
 
             using var session = await _klient.StartSessionAsync();
             session.StartTransaction();
 
             try
             {
-                var resultat = await _podcastKollektion.UpdateManyAsync(session, filter, update);
-                await session.CommitTransactionAsync();
-                return (int)resultat.ModifiedCount;
-            }
-            catch
-            {
-                await session.AbortTransactionAsync();
-                throw;
-            }
-        }
-        public async Task<bool> AndraKategoriForEnPoddAsync(string poddId, string nyKategori)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, poddId);
-            var update = Builders<Podcast>.Update.Set(p => p.Kategori, nyKategori);
-
-            using var session = await _klient.StartSessionAsync();
-            session.StartTransaction();
-
-            try
-            {
-                var resultat = await _podcastKollektion.UpdateOneAsync(session, filter, update);
-                await session.CommitTransactionAsync();
-                return resultat.ModifiedCount > 0;
-            }
-            catch
-            {
-                await session.AbortTransactionAsync();
-                throw;
-            }
-        }
-        public async Task<int> AndraKategorierForAllaPoddarAsync(string gammalKategori, string nyKategori)
-        {
-            var filter = Builders<Podcast>.Filter.Eq(p => p.Kategori, gammalKategori);
-            var update = Builders<Podcast>.Update.Set(p => p.Kategori, nyKategori);
-
-            using var session = await _klient.StartSessionAsync();
-            session.StartTransaction();
-
-            try
-            {
-                var resultat = await _podcastKollektion.UpdateManyAsync(session, filter, update);
+                var resultat = await _podcastKollektion.UpdateManyAsync(session, filter, uppdatering);
                 await session.CommitTransactionAsync();
                 return (int)resultat.ModifiedCount;
             }
             catch (Exception ex)
             {
                 await session.AbortTransactionAsync();
-                throw;
+                PrintaExceptionMeddelande(ex);
+                return -1;
             }
+        }
+        public async Task<bool> AndraKategoriForEnPoddAsync(string poddId, string nyKategori)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Id, poddId);
+            var uppdatering = Builders<Podcast>.Update.Set(p => p.Kategori, nyKategori);
+
+            using var session = await _klient.StartSessionAsync();
+            session.StartTransaction();
+
+            try
+            {
+                var resultat = await _podcastKollektion.UpdateOneAsync(session, filter, uppdatering);
+                await session.CommitTransactionAsync();
+                return resultat.ModifiedCount > 0;
+            }
+            catch (Exception ex)
+            {
+                await session.AbortTransactionAsync();
+                PrintaExceptionMeddelande(ex);
+                return false;
+            }
+        }
+        public async Task<int> AndraKategorierForAllaPoddarAsync(string gammalKategori, string nyKategori)
+        {
+            var filter = Builders<Podcast>.Filter.Eq(p => p.Kategori, gammalKategori);
+            var uppdatering = Builders<Podcast>.Update.Set(p => p.Kategori, nyKategori);
+
+            using var session = await _klient.StartSessionAsync();
+            session.StartTransaction();
+
+            try
+            {
+                var resultat = await _podcastKollektion.UpdateManyAsync(session, filter, uppdatering);
+                await session.CommitTransactionAsync();
+                return (int)resultat.ModifiedCount;
+            }
+            catch (Exception ex)
+            {
+                await session.AbortTransactionAsync();
+                PrintaExceptionMeddelande(ex);
+                return -1;
+            }
+        }
+        public void PrintaExceptionMeddelande(Exception ex)
+        {
+            Debug.WriteLine("EX.MESSAGE: " + ex.Message + "\nEX.TOSTRING(): " + ex.ToString());
         }
     }
 }

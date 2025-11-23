@@ -56,11 +56,12 @@
             // CategoryLbl
             // 
             CategoryLbl.Font = new Font("Showcard Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CategoryLbl.Location = new Point(552, 9);
+            CategoryLbl.Location = new Point(591, 9);
             CategoryLbl.Name = "CategoryLbl";
             CategoryLbl.Size = new Size(186, 28);
             CategoryLbl.TabIndex = 1;
             CategoryLbl.Text = "Kategorier";
+            CategoryLbl.TextAlign = ContentAlignment.MiddleRight;
             // 
             // DeleteRbn
             // 
@@ -105,7 +106,7 @@
             // CatBtn
             // 
             CatBtn.Font = new Font("Segoe UI", 12F);
-            CatBtn.Location = new Point(414, 84);
+            CatBtn.Location = new Point(443, 85);
             CatBtn.Name = "CatBtn";
             CatBtn.Size = new Size(78, 29);
             CatBtn.TabIndex = 8;
@@ -118,14 +119,14 @@
             CatTbxEdit.Font = new Font("Segoe UI", 12F);
             CatTbxEdit.Location = new Point(275, 130);
             CatTbxEdit.Name = "CatTbxEdit";
-            CatTbxEdit.Size = new Size(121, 29);
+            CatTbxEdit.Size = new Size(162, 29);
             CatTbxEdit.TabIndex = 12;
             CatTbxEdit.Text = "Placeholder";
             // 
             // CatBtnEdit
             // 
             CatBtnEdit.Font = new Font("Segoe UI", 12F);
-            CatBtnEdit.Location = new Point(414, 130);
+            CatBtnEdit.Location = new Point(443, 131);
             CatBtnEdit.Name = "CatBtnEdit";
             CatBtnEdit.Size = new Size(78, 29);
             CatBtnEdit.TabIndex = 11;
@@ -150,14 +151,14 @@
             CatCbx.FormattingEnabled = true;
             CatCbx.Location = new Point(275, 85);
             CatCbx.Name = "CatCbx";
-            CatCbx.Size = new Size(121, 29);
+            CatCbx.Size = new Size(162, 29);
             CatCbx.TabIndex = 14;
             // 
             // AlertLbl
             // 
             AlertLbl.AutoEllipsis = true;
             AlertLbl.Font = new Font("Segoe UI", 12F);
-            AlertLbl.Location = new Point(498, 84);
+            AlertLbl.Location = new Point(537, 85);
             AlertLbl.MaximumSize = new Size(240, 50);
             AlertLbl.MinimumSize = new Size(240, 0);
             AlertLbl.Name = "AlertLbl";
@@ -170,7 +171,7 @@
             // 
             AlertLblEditCount.AutoEllipsis = true;
             AlertLblEditCount.Font = new Font("Segoe UI", 12F);
-            AlertLblEditCount.Location = new Point(498, 130);
+            AlertLblEditCount.Location = new Point(537, 130);
             AlertLblEditCount.MaximumSize = new Size(240, 50);
             AlertLblEditCount.MinimumSize = new Size(240, 0);
             AlertLblEditCount.Name = "AlertLblEditCount";
@@ -183,7 +184,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(750, 205);
+            ClientSize = new Size(792, 177);
             Controls.Add(AlertLblEditCount);
             Controls.Add(AlertLbl);
             Controls.Add(CatCbx);
