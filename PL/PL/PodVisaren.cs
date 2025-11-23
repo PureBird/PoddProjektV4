@@ -78,7 +78,7 @@ namespace PL
             catch (System.Net.Http.HttpRequestException)
             {
                 MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
-                return dinPodd;
+                return null;
             }
         }
 
@@ -104,6 +104,12 @@ namespace PL
             {
                 string url = RSSTEXT.Text;
                 dinPodd = HamtaPodd(url);
+
+                if (dinPodd == null)
+            {
+                
+                return;
+            }
 
                 var visningsLista = new List<object>
             {
