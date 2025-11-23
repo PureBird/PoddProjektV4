@@ -21,12 +21,10 @@ namespace PL
         private bool trycktTillbaka = false;
         public Kategorier(Meny meny, PoddService poddService)
         {
-            _poddService = poddService;
-            _menyForm = meny;
-
             InitializeComponent();
 
-            
+            _poddService = poddService;
+            _menyForm = meny;
 
             RensaUI();
             EditRbn.Checked = true;
