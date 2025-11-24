@@ -35,38 +35,42 @@
             // 
             // RegisterBtn
             // 
+            RegisterBtn.BackColor = Color.White;
             RegisterBtn.Location = new Point(47, 41);
             RegisterBtn.Name = "RegisterBtn";
             RegisterBtn.Size = new Size(310, 112);
             RegisterBtn.TabIndex = 0;
             RegisterBtn.Text = "Register";
-            RegisterBtn.UseVisualStyleBackColor = true;
+            RegisterBtn.UseVisualStyleBackColor = false;
             RegisterBtn.Click += registerBtn_Click;
             // 
             // SokBtn
             // 
+            SokBtn.BackColor = Color.White;
             SokBtn.Location = new Point(47, 176);
             SokBtn.Name = "SokBtn";
             SokBtn.Size = new Size(310, 112);
             SokBtn.TabIndex = 1;
             SokBtn.Text = "Sök";
-            SokBtn.UseVisualStyleBackColor = true;
+            SokBtn.UseVisualStyleBackColor = false;
             SokBtn.Click += sokBtn_Click;
             // 
             // KategorierBtn
             // 
+            KategorierBtn.BackColor = Color.White;
             KategorierBtn.Location = new Point(47, 312);
             KategorierBtn.Name = "KategorierBtn";
             KategorierBtn.Size = new Size(310, 112);
             KategorierBtn.TabIndex = 2;
             KategorierBtn.Text = "Kategorier";
-            KategorierBtn.UseVisualStyleBackColor = true;
+            KategorierBtn.UseVisualStyleBackColor = false;
             KategorierBtn.Click += kategorierBtn_Click;
             // 
             // Meny
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(405, 450);
             Controls.Add(KategorierBtn);
             Controls.Add(SokBtn);
