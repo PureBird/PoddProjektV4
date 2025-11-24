@@ -1,17 +1,8 @@
-﻿using Microsoft.VisualBasic;
-using PoddProjektV4.BL;
+﻿using PoddProjektV4.BL;
 using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 
 namespace PL
@@ -20,7 +11,6 @@ namespace PL
     {
         private readonly PoddService service;
         private Podcast Podcast;
-        private Register registerForm;
         private bool trycktTillbaka = false;
         private readonly Meny menyForm;
 
