@@ -82,7 +82,7 @@
             dataGridView1.Location = new Point(48, 169);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(702, 252);
+            dataGridView1.Size = new Size(991, 465);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -109,7 +109,7 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1088, 664);
             Controls.Add(dataGridView1);
             Controls.Add(FilterComboBox);
             Controls.Add(h1);
