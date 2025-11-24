@@ -44,10 +44,9 @@
             // 
             // BackBtn
             // 
-            BackBtn.Location = new Point(10, 9);
-            BackBtn.Margin = new Padding(3, 2, 3, 2);
+            BackBtn.Location = new Point(11, 12);
             BackBtn.Name = "BackBtn";
-            BackBtn.Size = new Size(82, 22);
+            BackBtn.Size = new Size(94, 29);
             BackBtn.TabIndex = 0;
             BackBtn.Text = "<- Tillbaka";
             BackBtn.UseVisualStyleBackColor = true;
@@ -56,9 +55,9 @@
             // CategoryLbl
             // 
             CategoryLbl.Font = new Font("Showcard Gothic", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            CategoryLbl.Location = new Point(591, 9);
+            CategoryLbl.Location = new Point(675, 12);
             CategoryLbl.Name = "CategoryLbl";
-            CategoryLbl.Size = new Size(186, 28);
+            CategoryLbl.Size = new Size(213, 37);
             CategoryLbl.TabIndex = 1;
             CategoryLbl.Text = "Kategorier";
             CategoryLbl.TextAlign = ContentAlignment.MiddleRight;
@@ -68,10 +67,9 @@
             DeleteRbn.Appearance = Appearance.Button;
             DeleteRbn.AutoSize = true;
             DeleteRbn.Font = new Font("Segoe UI", 11F);
-            DeleteRbn.Location = new Point(95, 57);
-            DeleteRbn.Margin = new Padding(3, 2, 3, 2);
+            DeleteRbn.Location = new Point(109, 76);
             DeleteRbn.Name = "DeleteRbn";
-            DeleteRbn.Size = new Size(66, 30);
+            DeleteRbn.Size = new Size(81, 35);
             DeleteRbn.TabIndex = 5;
             DeleteRbn.TabStop = true;
             DeleteRbn.Text = "Radera";
@@ -83,10 +81,9 @@
             EditRbn.Appearance = Appearance.Button;
             EditRbn.AutoSize = true;
             EditRbn.Font = new Font("Segoe UI", 11F);
-            EditRbn.Location = new Point(10, 57);
-            EditRbn.Margin = new Padding(3, 2, 3, 2);
+            EditRbn.Location = new Point(11, 76);
             EditRbn.Name = "EditRbn";
-            EditRbn.Size = new Size(79, 30);
+            EditRbn.Size = new Size(96, 35);
             EditRbn.TabIndex = 6;
             EditRbn.TabStop = true;
             EditRbn.Text = "Redigera";
@@ -97,18 +94,19 @@
             // 
             CatLbl.AutoSize = true;
             CatLbl.Font = new Font("Segoe UI", 12F);
-            CatLbl.Location = new Point(10, 89);
+            CatLbl.Location = new Point(11, 119);
             CatLbl.Name = "CatLbl";
-            CatLbl.Size = new Size(219, 21);
+            CatLbl.Size = new Size(276, 28);
             CatLbl.TabIndex = 7;
             CatLbl.Text = "Namnet på den nya kategorin:";
             // 
             // CatBtn
             // 
             CatBtn.Font = new Font("Segoe UI", 12F);
-            CatBtn.Location = new Point(443, 85);
+            CatBtn.Location = new Point(506, 113);
+            CatBtn.Margin = new Padding(3, 4, 3, 4);
             CatBtn.Name = "CatBtn";
-            CatBtn.Size = new Size(78, 29);
+            CatBtn.Size = new Size(89, 39);
             CatBtn.TabIndex = 8;
             CatBtn.Text = "Skapa";
             CatBtn.UseVisualStyleBackColor = true;
@@ -117,18 +115,20 @@
             // CatTbxEdit
             // 
             CatTbxEdit.Font = new Font("Segoe UI", 12F);
-            CatTbxEdit.Location = new Point(275, 130);
+            CatTbxEdit.Location = new Point(314, 173);
+            CatTbxEdit.Margin = new Padding(3, 4, 3, 4);
             CatTbxEdit.Name = "CatTbxEdit";
-            CatTbxEdit.Size = new Size(162, 29);
+            CatTbxEdit.Size = new Size(185, 34);
             CatTbxEdit.TabIndex = 12;
             CatTbxEdit.Text = "Placeholder";
             // 
             // CatBtnEdit
             // 
             CatBtnEdit.Font = new Font("Segoe UI", 12F);
-            CatBtnEdit.Location = new Point(443, 131);
+            CatBtnEdit.Location = new Point(506, 175);
+            CatBtnEdit.Margin = new Padding(3, 4, 3, 4);
             CatBtnEdit.Name = "CatBtnEdit";
-            CatBtnEdit.Size = new Size(78, 29);
+            CatBtnEdit.Size = new Size(89, 39);
             CatBtnEdit.TabIndex = 11;
             CatBtnEdit.Text = "Ändra";
             CatBtnEdit.UseVisualStyleBackColor = true;
@@ -138,9 +138,9 @@
             // 
             CatLblEdit.AutoSize = true;
             CatLblEdit.Font = new Font("Segoe UI", 12F);
-            CatLblEdit.Location = new Point(10, 130);
+            CatLblEdit.Location = new Point(11, 173);
             CatLblEdit.Name = "CatLblEdit";
-            CatLblEdit.Size = new Size(205, 21);
+            CatLblEdit.Size = new Size(259, 28);
             CatLblEdit.TabIndex = 13;
             CatLblEdit.Text = "Nytt namn för vald kategori:";
             // 
@@ -149,20 +149,21 @@
             CatCbx.DropDownStyle = ComboBoxStyle.DropDownList;
             CatCbx.Font = new Font("Segoe UI", 12F);
             CatCbx.FormattingEnabled = true;
-            CatCbx.Location = new Point(275, 85);
+            CatCbx.Location = new Point(314, 113);
+            CatCbx.Margin = new Padding(3, 4, 3, 4);
             CatCbx.Name = "CatCbx";
-            CatCbx.Size = new Size(162, 29);
+            CatCbx.Size = new Size(185, 36);
             CatCbx.TabIndex = 14;
             // 
             // AlertLbl
             // 
             AlertLbl.AutoEllipsis = true;
             AlertLbl.Font = new Font("Segoe UI", 12F);
-            AlertLbl.Location = new Point(537, 85);
-            AlertLbl.MaximumSize = new Size(240, 50);
-            AlertLbl.MinimumSize = new Size(240, 0);
+            AlertLbl.Location = new Point(614, 113);
+            AlertLbl.MaximumSize = new Size(274, 67);
+            AlertLbl.MinimumSize = new Size(274, 0);
             AlertLbl.Name = "AlertLbl";
-            AlertLbl.Size = new Size(240, 49);
+            AlertLbl.Size = new Size(274, 65);
             AlertLbl.TabIndex = 15;
             AlertLbl.Text = "Placeholder";
             AlertLbl.TextAlign = ContentAlignment.TopCenter;
@@ -171,20 +172,20 @@
             // 
             AlertLblEditCount.AutoEllipsis = true;
             AlertLblEditCount.Font = new Font("Segoe UI", 12F);
-            AlertLblEditCount.Location = new Point(537, 130);
-            AlertLblEditCount.MaximumSize = new Size(240, 50);
-            AlertLblEditCount.MinimumSize = new Size(240, 0);
+            AlertLblEditCount.Location = new Point(614, 173);
+            AlertLblEditCount.MaximumSize = new Size(274, 67);
+            AlertLblEditCount.MinimumSize = new Size(274, 0);
             AlertLblEditCount.Name = "AlertLblEditCount";
-            AlertLblEditCount.Size = new Size(240, 25);
+            AlertLblEditCount.Size = new Size(274, 33);
             AlertLblEditCount.TabIndex = 16;
             AlertLblEditCount.Text = "Placeholder";
             AlertLblEditCount.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // Kategorier
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(792, 177);
+            ClientSize = new Size(905, 236);
             Controls.Add(AlertLblEditCount);
             Controls.Add(AlertLbl);
             Controls.Add(CatCbx);
@@ -197,8 +198,8 @@
             Controls.Add(DeleteRbn);
             Controls.Add(CategoryLbl);
             Controls.Add(BackBtn);
-            Margin = new Padding(3, 2, 3, 2);
             Name = "Kategorier";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Kategorier";
             ResumeLayout(false);
             PerformLayout();

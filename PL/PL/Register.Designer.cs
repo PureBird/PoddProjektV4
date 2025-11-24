@@ -109,6 +109,7 @@
             Controls.Add(h1);
             Controls.Add(TillbakaBtn);
             Name = "Register";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RegisterNew";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
