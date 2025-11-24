@@ -1,30 +1,24 @@
 using PoddProjektV4.BL;
 using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
-using System.Windows.Forms;
 using System.Xml;
-using System.Xml.Linq;
 
 
 namespace PL
 {
     public partial class PodVisaren : Form
     {
-        private readonly PoddRepository _poddRepo;
         private Podcast dinPodd;
         private readonly Meny _meny;
-        private readonly PoddService poddService;
+        private readonly PoddService _poddService;
         private bool tryckTillbaka = false;
-        public PodVisaren(Meny meny, PoddService poddService)
+        public PodVisaren(Meny meny, PoddService _poddService)
         {
             InitializeComponent();
             _meny = meny;
-            _poddRepo = new PoddRepository();
+            _poddService = new PoddService();
 
 
         }
@@ -80,6 +74,14 @@ namespace PL
                 MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
                 return null;
             }
+               
+                catch (System.UriFormatException
+)
+            {
+                MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
+                return null;
+            }
+
         }
 
 
@@ -159,7 +161,7 @@ namespace PL
             bool lyckadSpara = false;
 
             if (dinPodd != null){
-                lyckadSpara = await _poddRepo.LaggTillAsync(dinPodd);
+                lyckadSpara = await _poddService.LaggTillAsync(dinPodd);
             }
 
             if (dinPodd == null)

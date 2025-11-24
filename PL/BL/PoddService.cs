@@ -18,6 +18,10 @@ namespace PoddProjektV4.BL
             _repository = repository;
         }
 
+        public PoddService()
+        {
+        }
+
         //public bool PassarKategoriKrav(string kategori)
         //{
         //    if(kategori.Length > 15) return false;
@@ -76,12 +80,14 @@ namespace PoddProjektV4.BL
         {
             return await _repository.HamtaMedIdAsync(id) != null;
         }
-        public async Task LaggTillAsync(Podcast podcast)
+        public async Task<bool> LaggTillAsync(Podcast podcast)
         {
             if (!await PodcastFinnsAsync(podcast.Id))
             {
                 await _repository.LaggTillAsync(podcast);
+                return true;
             }
+            return false;
         }
         public async Task<bool> UppdateraAsync(Podcast nyPodcast)
         {
