@@ -72,6 +72,7 @@
             Controls.Add(SokBtn);
             Controls.Add(RegisterBtn);
             Name = "Meny";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
         }
