@@ -52,16 +52,18 @@
             // h1
             // 
             h1.AutoSize = true;
-            h1.Font = new Font("Stencil", 26F, FontStyle.Bold | FontStyle.Italic);
-            h1.Location = new Point(38, 58);
+            h1.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
+            h1.Location = new Point(48, 59);
             h1.Name = "h1";
-            h1.Size = new Size(239, 52);
+            h1.Size = new Size(225, 60);
             h1.TabIndex = 1;
             h1.Text = "REGISTER";
             // 
             // FilterComboBox
             // 
+            FilterComboBox.BackColor = Color.White;
             FilterComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+            FilterComboBox.ForeColor = Color.Black;
             FilterComboBox.FormattingEnabled = true;
             FilterComboBox.Location = new Point(48, 122);
             FilterComboBox.Name = "FilterComboBox";
@@ -79,7 +81,7 @@
             dataGridView1.Location = new Point(48, 169);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(592, 188);
+            dataGridView1.Size = new Size(702, 252);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
@@ -105,6 +107,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(800, 450);
             Controls.Add(dataGridView1);
             Controls.Add(FilterComboBox);
