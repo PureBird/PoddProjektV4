@@ -80,6 +80,7 @@
             dataGridView1.Size = new Size(592, 188);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            dataGridView1.AllowUserToAddRows = false;
             // 
             // PoddNamn
             // 
