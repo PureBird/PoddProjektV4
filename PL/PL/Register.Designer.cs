@@ -40,6 +40,7 @@
             // 
             // TillbakaBtn
             // 
+            TillbakaBtn.Enabled = false;
             TillbakaBtn.Location = new Point(17, 14);
             TillbakaBtn.Name = "TillbakaBtn";
             TillbakaBtn.Size = new Size(94, 29);
@@ -70,6 +71,7 @@
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.BackgroundColor = Color.Pink;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -80,7 +82,6 @@
             dataGridView1.Size = new Size(592, 188);
             dataGridView1.TabIndex = 3;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
-            dataGridView1.AllowUserToAddRows = false;
             // 
             // PoddNamn
             // 

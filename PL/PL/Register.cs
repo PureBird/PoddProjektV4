@@ -61,6 +61,7 @@ namespace PL
                 dataGridView1.Rows.Add(
                     podcast.Titel, podcast.Beskrivning, podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0);
             }
+            TillbakaBtn.Enabled = true;
         }
 
         private async void FilterComboBoxSelect(object? sender, EventArgs e)
