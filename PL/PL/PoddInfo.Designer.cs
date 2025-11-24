@@ -47,20 +47,20 @@
             // 
             PoddTitel.AutoSize = true;
             PoddTitel.Font = new Font("Segoe UI", 19F);
-            PoddTitel.Location = new Point(10, 58);
+            PoddTitel.Location = new Point(12, 72);
             PoddTitel.Margin = new Padding(2, 0, 2, 0);
             PoddTitel.Name = "PoddTitel";
-            PoddTitel.Size = new Size(194, 45);
+            PoddTitel.Size = new Size(225, 51);
             PoddTitel.TabIndex = 0;
             PoddTitel.Text = "En poddtitel";
             // 
             // Kategori1
             // 
             Kategori1.AutoSize = true;
-            Kategori1.Location = new Point(10, 116);
+            Kategori1.Location = new Point(12, 145);
             Kategori1.Margin = new Padding(2, 0, 2, 0);
             Kategori1.Name = "Kategori1";
-            Kategori1.Size = new Size(74, 20);
+            Kategori1.Size = new Size(88, 25);
             Kategori1.TabIndex = 1;
             Kategori1.Text = "Kategori1";
             // 
@@ -71,29 +71,30 @@
             // AvsnittTitel
             // 
             AvsnittTitel.FormattingEnabled = true;
-            AvsnittTitel.Location = new Point(10, 155);
-            AvsnittTitel.Margin = new Padding(2, 2, 2, 2);
+            AvsnittTitel.ItemHeight = 25;
+            AvsnittTitel.Location = new Point(12, 194);
+            AvsnittTitel.Margin = new Padding(2);
             AvsnittTitel.Name = "AvsnittTitel";
-            AvsnittTitel.Size = new Size(223, 244);
+            AvsnittTitel.Size = new Size(278, 304);
             AvsnittTitel.TabIndex = 2;
             AvsnittTitel.SelectedIndexChanged += AvsnittTitel_SelectedIndexChanged;
             // 
             // AvsnittInfo
             // 
-            AvsnittInfo.Location = new Point(294, 155);
-            AvsnittInfo.Margin = new Padding(2, 2, 2, 2);
+            AvsnittInfo.Location = new Point(368, 194);
+            AvsnittInfo.Margin = new Padding(2);
             AvsnittInfo.Multiline = true;
             AvsnittInfo.Name = "AvsnittInfo";
             AvsnittInfo.ScrollBars = ScrollBars.Vertical;
-            AvsnittInfo.Size = new Size(325, 244);
+            AvsnittInfo.Size = new Size(405, 304);
             AvsnittInfo.TabIndex = 3;
             // 
             // btnAndraKategori
             // 
-            btnAndraKategori.Location = new Point(498, 10);
-            btnAndraKategori.Margin = new Padding(2, 2, 2, 2);
+            btnAndraKategori.Location = new Point(622, 12);
+            btnAndraKategori.Margin = new Padding(2);
             btnAndraKategori.Name = "btnAndraKategori";
-            btnAndraKategori.Size = new Size(120, 27);
+            btnAndraKategori.Size = new Size(150, 34);
             btnAndraKategori.TabIndex = 4;
             btnAndraKategori.Text = "Ändra kategori";
             btnAndraKategori.UseVisualStyleBackColor = true;
@@ -101,18 +102,18 @@
             // 
             // tbNykategori
             // 
-            tbNykategori.Location = new Point(498, 49);
-            tbNykategori.Margin = new Padding(2, 2, 2, 2);
+            tbNykategori.Location = new Point(622, 61);
+            tbNykategori.Margin = new Padding(2);
             tbNykategori.Name = "tbNykategori";
-            tbNykategori.Size = new Size(121, 27);
+            tbNykategori.Size = new Size(150, 31);
             tbNykategori.TabIndex = 5;
             // 
             // btnAndraTitel
             // 
-            btnAndraTitel.Location = new Point(403, 9);
-            btnAndraTitel.Margin = new Padding(2, 2, 2, 2);
+            btnAndraTitel.Location = new Point(504, 11);
+            btnAndraTitel.Margin = new Padding(2);
             btnAndraTitel.Name = "btnAndraTitel";
-            btnAndraTitel.Size = new Size(90, 27);
+            btnAndraTitel.Size = new Size(112, 34);
             btnAndraTitel.TabIndex = 6;
             btnAndraTitel.Text = "Ändra titel";
             btnAndraTitel.UseVisualStyleBackColor = true;
@@ -120,18 +121,18 @@
             // 
             // txbAndraTitel
             // 
-            txbAndraTitel.Location = new Point(403, 49);
-            txbAndraTitel.Margin = new Padding(2, 2, 2, 2);
+            txbAndraTitel.Location = new Point(504, 61);
+            txbAndraTitel.Margin = new Padding(2);
             txbAndraTitel.Name = "txbAndraTitel";
-            txbAndraTitel.Size = new Size(90, 27);
+            txbAndraTitel.Size = new Size(112, 31);
             txbAndraTitel.TabIndex = 7;
             // 
             // btnTillbaka
             // 
-            btnTillbaka.Location = new Point(10, 10);
-            btnTillbaka.Margin = new Padding(2, 2, 2, 2);
+            btnTillbaka.Location = new Point(12, 12);
+            btnTillbaka.Margin = new Padding(2);
             btnTillbaka.Name = "btnTillbaka";
-            btnTillbaka.Size = new Size(90, 27);
+            btnTillbaka.Size = new Size(112, 34);
             btnTillbaka.TabIndex = 8;
             btnTillbaka.Text = "<- Tillbaka";
             btnTillbaka.UseVisualStyleBackColor = true;
@@ -139,10 +140,10 @@
             // 
             // btnTaBort
             // 
-            btnTaBort.Location = new Point(264, 9);
-            btnTaBort.Margin = new Padding(2, 2, 2, 2);
+            btnTaBort.Location = new Point(330, 11);
+            btnTaBort.Margin = new Padding(2);
             btnTaBort.Name = "btnTaBort";
-            btnTaBort.Size = new Size(119, 27);
+            btnTaBort.Size = new Size(149, 34);
             btnTaBort.TabIndex = 9;
             btnTaBort.Text = "Avprenumerera";
             btnTaBort.UseVisualStyleBackColor = true;
@@ -150,9 +151,10 @@
             // 
             // PoddInfo
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(640, 411);
+            BackColor = SystemColors.ActiveCaption;
+            ClientSize = new Size(800, 514);
             Controls.Add(btnTaBort);
             Controls.Add(btnTillbaka);
             Controls.Add(txbAndraTitel);
@@ -163,7 +165,7 @@
             Controls.Add(AvsnittTitel);
             Controls.Add(Kategori1);
             Controls.Add(PoddTitel);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PoddInfo";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "PoddInfo";

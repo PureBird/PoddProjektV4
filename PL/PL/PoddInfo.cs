@@ -26,8 +26,11 @@ namespace PL
 
 
             //Labels
-            PoddTitel.Text = podcast.Titel;
-            Kategori1.Text = podcast.Kategori;
+            PoddTitel.Text = Validering.StrangMaxLangd(podcast.Titel, 20);
+            Kategori1.Text = Validering.StrangMaxLangd(podcast.Kategori, 20);
+
+
+           
 
             //Textboxes
             VisaAvsnittTitelListBox(podcast);
@@ -79,7 +82,7 @@ namespace PL
             {
                 Podcast.Kategori = tbNykategori.Text;
                 await service.UppdateraAsync(Podcast);
-                Kategori1.Text = Podcast.Kategori;
+                Kategori1.Text = Validering.StrangMaxLangd(Podcast.Kategori, 20);
             }
         }
 
@@ -89,7 +92,7 @@ namespace PL
             {
                 Podcast.Titel = txbAndraTitel.Text;
                 await service.UppdateraAsync(Podcast);
-                PoddTitel.Text = Podcast.Titel;
+                PoddTitel.Text = Validering.StrangMaxLangd(Podcast.Titel, 20);
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PoddProjektV4.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,16 @@ namespace PL
             return true;
 
 
+        }
+
+        public static string StrangMaxLangd(string inputStrang, int maxChar)
+        {
+            if (inputStrang.Length > maxChar)
+            {
+                var nyText = inputStrang.Substring(0, maxChar) + "...";
+                return nyText;
+            }
+            return inputStrang;
         }
     }
 }
