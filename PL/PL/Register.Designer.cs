@@ -40,20 +40,21 @@
             // 
             // TillbakaBtn
             // 
+            TillbakaBtn.BackColor = Color.White;
             TillbakaBtn.Enabled = false;
             TillbakaBtn.Location = new Point(17, 14);
             TillbakaBtn.Name = "TillbakaBtn";
             TillbakaBtn.Size = new Size(94, 29);
             TillbakaBtn.TabIndex = 0;
             TillbakaBtn.Text = "<- Tillbaka";
-            TillbakaBtn.UseVisualStyleBackColor = true;
+            TillbakaBtn.UseVisualStyleBackColor = false;
             TillbakaBtn.Click += TillbakaBtn_Click;
             // 
             // h1
             // 
             h1.AutoSize = true;
             h1.Font = new Font("Segoe UI", 26.25F, FontStyle.Bold);
-            h1.Location = new Point(48, 59);
+            h1.Location = new Point(39, 59);
             h1.Name = "h1";
             h1.Size = new Size(225, 60);
             h1.TabIndex = 1;
@@ -75,7 +76,7 @@
             // 
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridView1.BackgroundColor = Color.Pink;
+            dataGridView1.BackgroundColor = SystemColors.GradientInactiveCaption;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { PoddNamn, PBeskrivning, AntalAvsnitt });
             dataGridView1.Location = new Point(48, 169);
