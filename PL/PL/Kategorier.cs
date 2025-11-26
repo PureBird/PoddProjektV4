@@ -34,11 +34,14 @@ namespace PL
 
         public async void FyllCbxMedKategorierAsync()
         {
+            CatCbx.Enabled = false;
             List<string> UnikaKategorier = await _poddService.HamtaUnikaKategorier();
             for (int i = 0; i < UnikaKategorier.Count; i++)
             {
-                CatCbx.Items.Add(UnikaKategorier[i]);
+                //Begränsar längden på kategorinamn i comboboxen till 15 karaktärer.
+                CatCbx.Items.Add(Validering.StrangMaxLangd(UnikaKategorier[i], 15));
             }
+            CatCbx.Enabled = true;
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -50,7 +53,7 @@ namespace PL
 
         protected override void OnFormClosing(FormClosingEventArgs e)
         {
-            if(!trycktTillbaka) Application.Exit();
+            if (!trycktTillbaka) Application.Exit();
             base.OnFormClosing(e);
         }
 
@@ -60,13 +63,13 @@ namespace PL
             CatCbx.Visible = false;
             CatBtn.Visible = false;
             AlertLbl.Text = "";
-            AlertLblEditCount.Text = "";
 
             //Andra raden
             CatLblEdit.Visible = false;
             CatTbxEdit.Visible = false;
             CatTbxEdit.Text = "";
             CatBtnEdit.Visible = false;
+            AlertLblEditCount.Text = "";
         }
 
         private void EditRbn_CheckedChanged(object sender, EventArgs e)
@@ -85,26 +88,35 @@ namespace PL
         private void DeleteRbn_CheckedChanged(object sender, EventArgs e)
         {
             RensaUI();
+            //Första raden
             CatLbl.Text = "Kategorin som du vill radera:";
             CatCbx.Visible = true;
             CatBtn.Visible = true;
             CatBtn.Text = "Radera";
         }
 
-        //När användaren klickar på radera knappen.
         private async void CatBtn_Click(object sender, EventArgs e)
         {
             if (!Validering.IsTomStrang(CatCbx.Text))
             {
                 //Frågar en extra gång om användaren är säker på sitt val. Krav*
-                var result = MessageBox.Show("Är du säker? Detta går inte att ångra!", 
+                var result = MessageBox.Show("Är du säker? Detta går inte att ångra!",
                     "Du vill radera ALLA platser kategorin: \"" + CatCbx.Text + "\" förekommer på.",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning);
 
                 if (result == DialogResult.Yes)
                 {
-                    int antalRaderade = await _poddService.TaBortKategoriFranAllaAsync(CatCbx.Text);
+                    string KategoriAttRadera = CatCbx.Text;
+                    //Om namnet i CatCbx är längre än 15 tecken,
+                    //är namnet trunkerat och vi måste hämta det fullständiga namnet.
+                    if (CatCbx.Text.Length > 15)
+                    {
+                        var TempLista = await _poddService.HamtaUnikaKategorier();
+                        KategoriAttRadera = TempLista[CatCbx.SelectedIndex];
+                    }
+
+                    int antalRaderade = await _poddService.TaBortKategoriFranAllaAsync(KategoriAttRadera);
                     AlertLbl.Text = "Kategorin " + CatCbx.Text + " har raderats från " + antalRaderade + " podcasts.";
                     CatCbx.Items.Remove(CatCbx.Text);
                 }
@@ -132,10 +144,37 @@ namespace PL
 
             if (result == DialogResult.Yes)
             {
-                int antalAndrade = await _poddService.AndraKategorierForAllaPoddarAsync(CatCbx.Text, CatTbxEdit.Text);
+                string KategoriAttRadera = CatCbx.Text;
+                //Om namnet i CatCbx är längre än 15 tecken,
+                //är namnet trunkerat och vi måste hämta det fullständiga namnet.
+                if (CatCbx.Text.Length > 15)
+                {
+                    var TempLista = await _poddService.HamtaUnikaKategorier();
+                    KategoriAttRadera = TempLista[CatCbx.SelectedIndex];
+                }
+
+                int antalAndrade = await _poddService.AndraKategorierForAllaPoddarAsync(KategoriAttRadera, CatTbxEdit.Text);
                 AlertLbl.Text = "Kategorin \"" + CatCbx.Text + "\" har bytts till sitt nya namn \"" + CatTbxEdit.Text + "\".";
                 AlertLblEditCount.Text = "Ändringen påverkade " + antalAndrade + " podcasts.";
-                CatCbx.Items[CatCbx.SelectedIndex] = CatTbxEdit.Text;
+                //Uppdaterar namnet i comboboxen. Trunkerar om det är längre än 15 tecken.
+                CatCbx.Items[CatCbx.SelectedIndex] = Validering.StrangMaxLangd(CatTbxEdit.Text, 15);
+            }
+        }
+
+        private void CatTbxEdit_TextChanged(object sender, EventArgs e)
+        {
+            AcceptButton = CatBtnEdit;
+        }
+
+        private void CatCbx_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DeleteRbn.Checked)
+            {
+                AcceptButton = CatBtn;
+            }
+            else if (EditRbn.Checked)
+            {
+                AcceptButton = CatBtnEdit;
             }
         }
     }
