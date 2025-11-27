@@ -23,11 +23,11 @@ namespace PL
 
         private async void FyllSida(object? sender, EventArgs e)
         {
-            await FyllRegister(sender, e);
-            await FyllComboBox(sender, e);
+            await FyllComboBox();
+            await FyllRegister();
         }
 
-        private async Task FyllComboBox(object? sender, EventArgs e)
+        private async Task FyllComboBox()
         {
             FilterComboBox.Items.Add("Alla Poddar");
             List<string> kategoriLista = new List<string>();
@@ -38,9 +38,11 @@ namespace PL
                 FilterComboBox.Items.Add(kategori);
             }
 
+            FilterComboBox.SelectedIndex = 0;
+
         }
 
-        private async Task FyllRegister(object? sender, EventArgs e)
+        private async Task FyllRegister()
         {
             laddadePoddar = await service.HamtaAllaPoddarAsync();
             dataGridView1.Rows.Clear();
