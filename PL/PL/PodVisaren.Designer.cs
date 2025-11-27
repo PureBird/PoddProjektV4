@@ -56,7 +56,7 @@
             // 
             RSSTEXT.BackColor = SystemColors.HighlightText;
             RSSTEXT.Location = new Point(13, 82);
-            RSSTEXT.Margin = new Padding(2, 2, 2, 2);
+            RSSTEXT.Margin = new Padding(2);
             RSSTEXT.Name = "RSSTEXT";
             RSSTEXT.PlaceholderText = "Länka din podd i rss format!";
             RSSTEXT.Size = new Size(346, 27);
@@ -66,7 +66,7 @@
             // visaPODD
             // 
             visaPODD.Location = new Point(363, 82);
-            visaPODD.Margin = new Padding(2, 2, 2, 2);
+            visaPODD.Margin = new Padding(2);
             visaPODD.Name = "visaPODD";
             visaPODD.Size = new Size(143, 25);
             visaPODD.TabIndex = 4;
@@ -80,7 +80,7 @@
             poddTabell.BackgroundColor = SystemColors.ButtonHighlight;
             poddTabell.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             poddTabell.Location = new Point(13, 156);
-            poddTabell.Margin = new Padding(2, 2, 2, 2);
+            poddTabell.Margin = new Padding(2);
             poddTabell.Name = "poddTabell";
             poddTabell.RowHeadersWidth = 62;
             poddTabell.Size = new Size(494, 92);
@@ -103,7 +103,7 @@
             // sparaBTN
             // 
             sparaBTN.Location = new Point(829, 99);
-            sparaBTN.Margin = new Padding(2, 2, 2, 2);
+            sparaBTN.Margin = new Padding(2);
             sparaBTN.Name = "sparaBTN";
             sparaBTN.Size = new Size(269, 27);
             sparaBTN.TabIndex = 7;
@@ -116,9 +116,9 @@
             TillbakaBtn.BackColor = SystemColors.ActiveCaption;
             TillbakaBtn.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             TillbakaBtn.Location = new Point(26, 18);
-            TillbakaBtn.Margin = new Padding(2, 2, 2, 2);
+            TillbakaBtn.Margin = new Padding(2);
             TillbakaBtn.Name = "TillbakaBtn";
-            TillbakaBtn.Size = new Size(93, 31);
+            TillbakaBtn.Size = new Size(111, 31);
             TillbakaBtn.TabIndex = 8;
             TillbakaBtn.Text = "<-- Tillbaka";
             TillbakaBtn.UseVisualStyleBackColor = false;
@@ -137,7 +137,7 @@
             Controls.Add(visaPODD);
             Controls.Add(RSSTEXT);
             Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "PodVisaren";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
