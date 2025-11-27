@@ -1,40 +1,16 @@
 ﻿using MongoDB.Driver;
 using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PoddProjektV4.BL
 {
     public class PoddService
     {
-
         private readonly PoddRepository _repository;
-        public PoddService(PoddRepository repository)
-        {
-            _repository = repository;
-        }
-
         public PoddService()
         {
+            _repository = new PoddRepository();
         }
-
-        //public bool PassarKategoriKrav(string kategori)
-        //{
-        //    if(kategori.Length > 15) return false;
-        //    return true;
-        //}
-
-        //public bool PassarPodcastKrav(Podcast podcast)
-        //{
-        //    if(string.IsNullOrEmpty(podcast.Titel) || podcast.Titel.Length > 50) return false;
-        //    if(string.IsNullOrEmpty(podcast.Beskrivning) || podcast.Beskrivning.Length > 500) return false;
-        //    if(!PassarKategoriKrav(podcast.Kategori)) return false;
-        //    return true;
-        //}
 
         public async Task<List<string>> HamtaUnikaKategorier()
         {
@@ -52,7 +28,6 @@ namespace PoddProjektV4.BL
             }
 
             return kategoriLista;
-
         }
         public async Task<List<Podcast>> HamtaPoddarMedKategori(string kategori)
         {

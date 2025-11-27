@@ -1,5 +1,4 @@
 ﻿using PoddProjektV4.BL;
-using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System.Diagnostics;
 using System.Text;
@@ -14,23 +13,17 @@ namespace PL
         private bool trycktTillbaka = false;
         private readonly Meny menyForm;
 
-        public PoddInfo(Podcast podcast, Meny meny)
+        public PoddInfo(Podcast podcast, Meny meny, PoddService poddService)
         {
             InitializeComponent();
 
-            var repo = new PoddRepository();
-            service = new PoddService(repo);
+            service = poddService;
             Podcast = podcast;
             menyForm = meny;
-
-
 
             //Labels
             PoddTitel.Text = Validering.StrangMaxLangd(podcast.Titel, 20);
             Kategori1.Text = Validering.StrangMaxLangd(podcast.Kategori, 20);
-
-
-           
 
             //Textboxes
             VisaAvsnittTitelListBox(podcast);
@@ -40,7 +33,6 @@ namespace PL
 
             tbNykategori.PlaceholderText = "Ny kategori";
             txbAndraTitel.PlaceholderText = "Ny titel";
-
         }
 
         public void VisaAvsnittTitelListBox(Podcast podcast)
@@ -128,6 +120,16 @@ namespace PL
             {
                 return;
             }
+        }
+
+        private void txbAndraTitel_TextChanged(object sender, EventArgs e)
+        {
+            AcceptButton = btnAndraTitel;
+        }
+
+        private void tbNykategori_TextChanged(object sender, EventArgs e)
+        {
+            AcceptButton = btnAndraKategori;
         }
     }
 }

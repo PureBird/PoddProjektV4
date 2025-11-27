@@ -20,7 +20,6 @@ namespace PoddProjektV4.Models
         [BsonElement("poddAvsnitt")]
         public List<Avsnitt> PoddAvsnitt { get; set; }
         public Podcast() { }
-
         public Podcast(string id, string titel, string beskrivning, string kategori, List<Avsnitt> poddAvsnitt) 
         {
             Id = id;
@@ -29,6 +28,5 @@ namespace PoddProjektV4.Models
             Kategori = kategori;
             PoddAvsnitt = poddAvsnitt;
         }
-
     }
 }
