@@ -1,16 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using PoddProjektV4.DAL;
-using PoddProjektV4.BL;
+﻿using PoddProjektV4.BL;
 using PoddProjektV4.Models;
-using MongoDB.Driver;
 
 
 namespace PL
@@ -30,7 +19,6 @@ namespace PL
             this.Load += FyllSida;
             FilterComboBox.SelectedIndexChanged += FilterComboBoxSelect;
             dataGridView1.CellClick += CellKlickad;
-
         }
 
         private async void FyllSida(object? sender, EventArgs e)
@@ -42,10 +30,11 @@ namespace PL
         private async Task FyllComboBox(object? sender, EventArgs e)
         {
             FilterComboBox.Items.Add("Alla Poddar");
-            List<string> kategoriLista = new List<string>(); 
+            List<string> kategoriLista = new List<string>();
             kategoriLista = await service.HamtaUnikaKategorier();
 
-            foreach (var kategori in kategoriLista) {
+            foreach (var kategori in kategoriLista)
+            {
                 FilterComboBox.Items.Add(kategori);
             }
 
@@ -80,14 +69,12 @@ namespace PL
 
             foreach (var podcast in laddadePoddar)
             {
-                    dataGridView1.Rows.Add(
-                        podcast.Titel, 
-                        podcast.Beskrivning, 
-                        podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0
-                    );
+                dataGridView1.Rows.Add(
+                    podcast.Titel,
+                    podcast.Beskrivning,
+                    podcast.PoddAvsnitt != null ? podcast.PoddAvsnitt.Count : 0
+                );
             }
-
-
         }
 
         private void CellKlickad(object? sender, DataGridViewCellEventArgs e)
@@ -96,7 +83,7 @@ namespace PL
 
             Podcast valdPodcast = laddadePoddar[e.RowIndex];
 
-            new PoddInfo(valdPodcast, menyForm).Show();
+            new PoddInfo(valdPodcast, menyForm, service).Show();
             this.Hide();
         }
 

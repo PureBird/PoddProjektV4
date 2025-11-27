@@ -1,11 +1,4 @@
-﻿using PoddProjektV4.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PL
+﻿namespace PL
 {
     public class Validering
     {
@@ -17,13 +10,11 @@ namespace PL
 
         public static bool arHTTPSLank(string testStrang)
         {
-            if( testStrang.StartsWith("https://"))
+            if(testStrang.StartsWith("https://"))
             {
                 return false;
             }
             return true;
-
-
         }
 
         public static string StrangMaxLangd(string inputStrang, int maxChar)

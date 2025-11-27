@@ -23,7 +23,5 @@ namespace PoddProjektV4.Models
             Beskrivning = beskrivning;
             PremiarDatum = premiarDatum;
         }
-
-
     }
 }

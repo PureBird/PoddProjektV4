@@ -1,5 +1,4 @@
 using PoddProjektV4.BL;
-using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
@@ -14,13 +13,11 @@ namespace PL
         private readonly Meny _meny;
         private readonly PoddService _poddService;
         private bool tryckTillbaka = false;
-        public PodVisaren(Meny meny, PoddService _poddService)
+        public PodVisaren(Meny meny, PoddService poddService)
         {
             InitializeComponent();
             _meny = meny;
-            _poddService = new PoddService();
-
-
+            _poddService = poddService;
         }
 
         public Podcast HamtaPodd(string xmlPoddLank)
@@ -74,8 +71,8 @@ namespace PL
                 MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
                 return null;
             }
-               
-                catch (System.UriFormatException
+
+            catch (System.UriFormatException
 )
             {
                 MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
@@ -108,10 +105,10 @@ namespace PL
                 dinPodd = HamtaPodd(url);
 
                 if (dinPodd == null)
-            {
-                
-                return;
-            }
+                {
+
+                    return;
+                }
 
                 var visningsLista = new List<object>
             {
@@ -137,8 +134,6 @@ namespace PL
                 MessageBox.Show("Länken är felaktigt, kontrollera att sidan finns");
                 return;
             }
-
-
         }
 
         private void RSSTEXT_TextChanged(object sender, EventArgs e)
@@ -160,7 +155,8 @@ namespace PL
         {
             bool lyckadSpara = false;
 
-            if (dinPodd != null){
+            if (dinPodd != null)
+            {
                 lyckadSpara = await _poddService.LaggTillAsync(dinPodd);
             }
 
