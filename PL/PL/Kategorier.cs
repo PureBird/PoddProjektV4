@@ -85,29 +85,31 @@ namespace PL
 
         private async void CatBtn_Click(object sender, EventArgs e)
         {
-            if (!Validering.IsTomStrang(CatCbx.Text))
+            if (Validering.IsTomStrang(CatCbx.Text))
             {
-                //Frågar en extra gång om användaren är säker på sitt val. Krav*
-                var result = MessageBox.Show("Är du säker? Detta går inte att ångra!",
-                    "Du vill radera ALLA platser kategorin: \"" + CatCbx.Text + "\" förekommer på.",
-                    MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning);
+                AlertLbl.Text = "Välj en kategori att radera.";
+                return;
+            }
+            //Frågar en extra gång om användaren är säker på sitt val. Krav*
+            var result = MessageBox.Show("Är du säker? Detta går inte att ångra!",
+                "Du vill radera ALLA platser kategorin: \"" + CatCbx.Text + "\" förekommer på.",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
 
-                if (result == DialogResult.Yes)
+            if (result == DialogResult.Yes)
+            {
+                string KategoriAttRadera = CatCbx.Text;
+                //Om namnet i CatCbx är längre än 15 tecken,
+                //är namnet trunkerat och vi måste hämta det fullständiga namnet.
+                if (CatCbx.Text.Length > 15)
                 {
-                    string KategoriAttRadera = CatCbx.Text;
-                    //Om namnet i CatCbx är längre än 15 tecken,
-                    //är namnet trunkerat och vi måste hämta det fullständiga namnet.
-                    if (CatCbx.Text.Length > 15)
-                    {
-                        var TempLista = await _poddService.HamtaUnikaKategorier();
-                        KategoriAttRadera = TempLista[CatCbx.SelectedIndex];
-                    }
-
-                    int antalRaderade = await _poddService.TaBortKategoriFranAllaAsync(KategoriAttRadera);
-                    AlertLbl.Text = "Kategorin " + CatCbx.Text + " har raderats från " + antalRaderade + " podcasts.";
-                    CatCbx.Items.Remove(CatCbx.Text);
+                    var TempLista = await _poddService.HamtaUnikaKategorier();
+                    KategoriAttRadera = TempLista[CatCbx.SelectedIndex];
                 }
+
+                int antalRaderade = await _poddService.TaBortKategoriFranAllaAsync(KategoriAttRadera);
+                AlertLbl.Text = "Kategorin " + CatCbx.Text + " har raderats från " + antalRaderade + " podcasts.";
+                CatCbx.Items.Remove(CatCbx.Text);
             }
         }
 
