@@ -1,5 +1,4 @@
-﻿using MongoDB.Driver;
-using PoddProjektV4.DAL;
+﻿using PoddProjektV4.DAL;
 using PoddProjektV4.Models;
 
 namespace PoddProjektV4.BL
