@@ -66,7 +66,8 @@
             // 
             // podcastBindingSource
             // 
-            podcastBindingSource.DataSource = typeof(PoddProjektV4.Models.Podcast);
+            //podcastBindingSource.DataSource = typeof(PoddProjektV4.Models.Podcast);
+            podcastBindingSource.DataSource = typeof(Models.Podcast);
             // 
             // AvsnittTitel
             // 

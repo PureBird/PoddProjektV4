@@ -1,4 +1,4 @@
-﻿using PoddProjektV4.BL;
+﻿using BL;
 
 namespace PL
 {

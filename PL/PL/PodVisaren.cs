@@ -1,5 +1,5 @@
-using PoddProjektV4.BL;
-using PoddProjektV4.Models;
+using BL;
+using Models;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
 using System.Xml;
