@@ -1,4 +1,4 @@
-using PoddProjektV4.BL;
+using BL;
 using System.Diagnostics;
 
 namespace PL
@@ -29,7 +29,7 @@ namespace PL
         private void kategorierBtn_Click(object sender, EventArgs e)
         {
             Kategorier kategoriForm = new Kategorier(this, _poddService);
-            Debug.WriteLine("Det funkar");
+
             kategoriForm.Show();
             this.Hide();
         }

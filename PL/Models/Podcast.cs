@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace PoddProjektV4.Models
+namespace Models
 {
     public class Podcast
     {

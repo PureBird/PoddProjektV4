@@ -1,6 +1,6 @@
-﻿namespace DAL
+﻿namespace BL
 {
-    public interface IRepository<T>
+    public interface IService<T>
     {
         Task<bool> LaggTillAsync(T entitet);
         Task<bool> UppdateraAsync(T entitet);

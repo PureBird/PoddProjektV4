@@ -1,5 +1,5 @@
-﻿using PoddProjektV4.BL;
-using PoddProjektV4.Models;
+﻿using BL;
+using Models;
 
 
 namespace PL
@@ -44,7 +44,7 @@ namespace PL
 
         private async Task FyllRegister()
         {
-            laddadePoddar = await service.HamtaAllaPoddarAsync();
+            laddadePoddar = await service.HamtaAlltAsync();
             dataGridView1.Rows.Clear();
 
             foreach (var podcast in laddadePoddar)
@@ -61,7 +61,7 @@ namespace PL
 
             if (FilterComboBox.Text == "Alla Poddar")
             {
-                laddadePoddar = await service.HamtaAllaPoddarAsync();
+                laddadePoddar = await service.HamtaAlltAsync();
             }
 
             else

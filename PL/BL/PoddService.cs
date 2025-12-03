@@ -1,19 +1,38 @@
-﻿using PoddProjektV4.DAL;
-using PoddProjektV4.Models;
+﻿using DAL;
+using Models;
 
-namespace PoddProjektV4.BL
+namespace BL
 {
-    public class PoddService
+    public class PoddService : IService<Podcast>
     {
         private readonly PoddRepository _repository;
-        public PoddService()
+        public PoddService(PoddRepository repo)
         {
-            _repository = new PoddRepository();
+            _repository = repo;
         }
-
+        public async Task<bool> LaggTillAsync(Podcast podcast)
+        {
+            return await _repository.LaggTillAsync(podcast);
+        }
+        public async Task<bool> UppdateraAsync(Podcast nyPodcast)
+        {
+            return await _repository.UppdateraAsync(nyPodcast);
+        }
+        public async Task<bool> RaderaAsync(string id)
+        {
+            return await _repository.RaderaAsync(id);
+        }
+        public async Task<Podcast?> HamtaMedIdAsync(string id)
+        {
+            return await _repository.HamtaMedIdAsync(id);
+        }
+        public async Task<List<Podcast>> HamtaAlltAsync()
+        {
+            return await _repository.HamtaAlltAsync();
+        }
         public async Task<List<string>> HamtaUnikaKategorier()
         {
-            var allaPoddar = await HamtaAllaPoddarAsync();
+            var allaPoddar = await HamtaAlltAsync();
             List<string> kategoriLista = new List<string>();
 
             foreach (var podcast in allaPoddar)
@@ -30,7 +49,7 @@ namespace PoddProjektV4.BL
         }
         public async Task<List<Podcast>> HamtaPoddarMedKategori(string kategori)
         {
-            var allaPoddar = await HamtaAllaPoddarAsync();
+            var allaPoddar = await HamtaAlltAsync();
             return allaPoddar.Where(p => p.Kategori == kategori)
                 .ToList();
         }
@@ -49,35 +68,6 @@ namespace PoddProjektV4.BL
         public async Task<int> AndraKategorierForAllaPoddarAsync(string gammalKategori, string nyKategori)
         {
             return await _repository.AndraKategorierForAllaPoddarAsync(gammalKategori, nyKategori);
-        }
-        public async Task<bool> PodcastFinnsAsync(string id)
-        {
-            return await _repository.HamtaMedIdAsync(id) != null;
-        }
-        public async Task<bool> LaggTillAsync(Podcast podcast)
-        {
-            if (!await PodcastFinnsAsync(podcast.Id))
-            {
-                await _repository.LaggTillAsync(podcast);
-                return true;
-            }
-            return false;
-        }
-        public async Task<bool> UppdateraAsync(Podcast nyPodcast)
-        {
-            return await _repository.UppdateraAsync(nyPodcast);
-        }
-        public async Task<bool> RaderaAsync(string id)
-        {
-            return await _repository.RaderaAsync(id);
-        }
-        public async Task<Podcast?> HamtaMedIdAsync(string id)
-        {
-            return await _repository.HamtaMedIdAsync(id);
-        }
-        public async Task<List<Podcast>> HamtaAllaPoddarAsync()
-        {
-            return await _repository.HamtaAlltAsync();
         }
     }
 }

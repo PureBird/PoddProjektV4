@@ -1,8 +1,8 @@
 ﻿using MongoDB.Driver;
-using PoddProjektV4.Models;
+using Models;
 using System.Diagnostics;
 
-namespace PoddProjektV4.DAL
+namespace DAL
 {
     public class PoddRepository : IRepository<Podcast>
     {
@@ -11,8 +11,8 @@ namespace PoddProjektV4.DAL
         public PoddRepository()
         {
             _klient = new MongoClient("mongodb+srv://OruMongoDBAdmin:hej@orumongodb.8yb9y4t.mongodb.net/?appName=OruMongoDB");
-            // var databas = _klient.GetDatabase("OruMongoDB"); originell databas
-            var databas = _klient.GetDatabase("opponering");
+             var databas = _klient.GetDatabase("OruMongoDB"); //originell databas
+            //var databas = _klient.GetDatabase("opponering");
             _podcastKollektion = databas.GetCollection<Podcast>("Poddar");
         }
         public async Task<bool> LaggTillAsync(Podcast podcast)
