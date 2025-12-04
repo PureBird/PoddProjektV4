@@ -1,9 +1,9 @@
 using BL;
 using Models;
+using System.Net;
 using System.ServiceModel.Syndication;
 using System.Text.RegularExpressions;
 using System.Xml;
-
 
 namespace PL
 {
@@ -43,14 +43,13 @@ namespace PL
                     })
                         .FirstOrDefault();//ta första du hittar, kan vara null om inget hittas 
 
-
                     List<Avsnitt> avsnittLista = new List<Avsnitt>();
                     foreach (var item in flode.Items)
                     {
                         avsnittLista.Add(new Avsnitt
                         {
                             Titel = item.Title.Text,
-                            Beskrivning = Regex.Replace(item.Summary?.Text ?? "", "<.*?>", "").Trim(), //Beskrivning = flode.Description?.Text, Så var det förut
+                            Beskrivning = RensaHtml(item.Summary?.Text ?? ""), //Beskrivning = flode.Description?.Text, Så var det förut
                             PremiarDatum = item.PublishDate.DateTime.ToString("yyyy-MM-dd")
                         });
                     }
@@ -59,7 +58,7 @@ namespace PL
                     {
                         Id = Guid.NewGuid().ToString(),
                         Titel = flode.Title.Text,
-                        Beskrivning = flode.Description?.Text,
+                        Beskrivning = RensaHtml(flode.Description?.Text),
                         Kategori = kategoriText,
                         PoddAvsnitt = avsnittLista
                     };
@@ -81,9 +80,6 @@ namespace PL
 
         }
 
-
-
-
         private void visaPODD_Click_1(object sender, EventArgs e)
         {
             if (Validering.IsTomStrang(RSSTEXT.Text))
@@ -97,7 +93,6 @@ namespace PL
                 MessageBox.Show("Länken måste vara HTTPS");
                 return;
             }
-
 
             try
             {
@@ -193,6 +188,16 @@ namespace PL
         {
             if (!tryckTillbaka) Application.Exit();
             base.OnFormClosing(e);
+        }
+
+       private static string RensaHtml(string text)
+        {
+        if (string.IsNullOrWhiteSpace(text))
+            return string.Empty;
+
+        string utanTaggar = Regex.Replace(text, "<.*?>", string.Empty);
+
+        return WebUtility.HtmlDecode(utanTaggar).Trim();
         }
     }
 }
